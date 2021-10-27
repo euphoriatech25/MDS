@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/patient_no"
+                android:layout_width="20dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/blue"
+                android:text="No." />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+
+                android:layout_gravity="center"
+                android:id="@+id/patient_id"
+                style="@style/table_row_design"
+                android:text="@string/patient_id" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+
+                android:layout_gravity="center"
+                android:id="@+id/patient_name"
+                style="@style/table_row_design"
+                android:text="Name" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/patient_photo"
+
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="Photo" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+
+                android:layout_gravity="center"
+                android:id="@+id/patient_comment"
+                style="@style/table_row_design"
+                android:text="Comment" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+
+                android:layout_gravity="center"
+                android:id="@+id/terminal_used"
+                style="@style/table_row_design"
+                android:text="Terminal used" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+          <LinearLayout
+              android:layout_gravity="center"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginEnd="10dp">
+              <ImageButton
+                  android:id="@+id/edit_patient"
+                  android:layout_width="30dp"
+                  android:src="@drawable/ic_baseline_edit_24"
+                  android:background="@color/blue"
+                  android:layout_height="30dp"/>
+              <ImageButton
+                  android:id="@+id/delete_patient"
+                  android:layout_width="30dp"
+                  android:src="@drawable/ic_baseline_delete_24"
+                  android:background="@color/colorAccent"
+                  android:layout_height="30dp"/>
+
+          </LinearLayout>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+</androidx.cardview.widget.CardView>

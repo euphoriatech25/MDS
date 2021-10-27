@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MDS</string>
+    <string name="verify_patient_identity">患者の身元を確認する</string>
+    <string name="register_patient">患者登録</string>
+
+    <string name="language_change"><font color='#a9a9a9'>言語変更</font></string>
+    <string name="please_select_your_location_to_verify_your_device">デバイス使われる場合を特定できるキーワドを入力してください。</string>
+
+    <string name="package_name">com.ramlaxmaninnovation.mds</string>
+    <string name="tap_to_click_picture">タップして画像をクリック</string>
+    <string name="patient_id">患者ID :-</string>
+    <string name="patient_name">患者名</string>
+    <string name="online">オンライン</string>
+    <string name="offline">オフライン</string>
+    <string name="unknown">不明</string>
+    <string name="patient_verified">監査完了：-</string>
+    <string name="set_threshold">しきい値の設定 ：-</string>
+    <string name="set_language">言語の設定 ：-</string>
+    <string name="device_using_status">システム使用モード :-</string>
+    <string name="medicine_dispense_system">顔認識監査システム</string>
+    <string name="setting">設定</string>
+    <string name="powered_by_seiko_electric">開発社</string>
+    <string name="device_location">デバイス名</string>
+    <string name="verify_device">デバイスの確認</string>
+
+
+    <string name="onlineSwitch">以前のデータを削除され、取得できなくなります。切り替えてもよろしいですか。</string>
+    <string name="yes">はい</string>
+    <string name="no">いいえ</string>
+    <string name="consumption_date">服薬日</string>
+    <string name="patient_medicine_log">服薬ログ</string>
+    <string name="cancel">キャンセル</string>
+    <string name="error">エラー!!!</string>
+    <string name="check_your_internet"> インターネット接続を確認してください</string>
+
+    <string name="japanese">日本語</string>
+    <string name="english">英語</string>
+
+    <!--//dsffcdfcdcfdcdfcdc-->
+    <string name="photo_error">写真を追加してください</string>
+    <string name="continue_button">続行</string>
+
+
+    <string name="VERIFYING_FOR_User">ユーザー名の確認 :-</string>
+    <string name="add_your_device_location">デバイスの場所を追加してください</string>
+    <string name="registering_device">デバイスの登録</string>
+    <string name="plase_wait">お待ちください......</string>
+    <string name="camera_permission">カメラの許可</string>
+    <string name="permission_title">アプリは、カメラの許可なしに機能できませんでした</string>
+    <string name="allow">許可する</string>
+    <string name="close">閉じる</string>
+    <string name="last_consumption">最後の服薬 :- </string>
+    <string name="downloading">ダウンロード中</string>
+    <string name="face_registered">登録しました</string>
+    <string name="no_interest_connection">インターネットに接続できません</string>
+    <string name="something_went_wrong">何らかの問題が発生しました</string>
+    <string name="connectiontimeout">接続タイムアウト</string>
+    <string name="checking">チェック中.....</string>
+    <string name="image_selected">選択された画像</string>
+    <string name="no_face_were_found">写真に顔は見つかりませんでした</string>
+    <string name="are_you_to_clean_report_table">レポート テーブルをクリヤーしますか?</string>
+
+    <string name="internet_connection">インターネット接続を確認してください</string>
+
+
+    <string name="information">重要！！</string>
+    <string name="important_information_to_read">デバイス登録前に読んでください。</string>
+    <string name="there_are_two_cases_in_this_app_to_consider">このアプリには2つの導入方法があります。：-</string>
+    <string name="online_mode">* オンラインモード：インターネット経由でサーバストレージ内のデータとやり取りします。４G、Wi-Fiを使用できます。</string>
+    <string name="offline_mode">* オフラインモード：（初期登録時はWi-Fiのインターネット環境が必要です。）データをローカルストレージに保存します。デバイスにダメージが加わった際にデータが破損する場合があります。</string>
+    <string name="view_report">レポートを見る</string>
+
+
+    <string name="remarks">コメント</string>
+    <string name="VERIFYING_FOR">患者名の確認：-</string>
+    <string name="patient_not_found">認証できませんでしたもう一度実施してください </string>
+    <string name="seiko_service_and_engineering_corp">株式会社正興電機製作所</string>
+    <string name="location_7_25_2_chome_hakata_ku_fukuoka_city_japan_812_0008">場所：福岡市博多区二丁目812-0008</string>
+    <string name="tel_81_92_473_9082">Tel : +81–92-473-9082</string>
+
+    <string name="patient_success">患者が正常に見つかりました</string>
+    <string name="quit">本当にやめる気？</string>
+
+    <string name="user_not_found">ユーザーが見つかりません。</string>
+    <string name="found">見つかった</string>
+    <string name="users">ユーザー。</string>
+
+    <string name="internal_server_error">ネットワークエラー… \n もう一度やり直してください...</string>
+    <string name="verify">確認</string>
+
+    <string name="about_developers">開発者について</string>
+
+    <string name="copyright">©2021 SEIKO ELECTRIC CO.LTD.</string>
+
+    <string name="version">  バージョン   </string>
+    <string name="patient_already_register">は登録済みのIDです。 !!!</string>
+
+    <string name="verify_user">ユーザーの確認</string>
+    <string name="enter_id">IDを入力…</string>
+    <string name="status">状態</string>
+    <string name="verified_customer">監査完了</string>
+
+
+    <string name="front_camera">前面のカメラ</string>
+    <string name="back_camera">バックカメラ</string>
+    <string name="qr_format_error">与えられたQRコードフォーマットは有効なフォーマットではありません... !!!</string>
+
+
+    <string name="terminal_name">端末名</string>
+    <string name="user_name">使用者名</string>
+    <string name="date_time">使用日時</string>
+    <string name="user_id">使用者ID</string>
+
+
+
+
+    <string name="network_failure">ネットワーク障害</string>
+    <string name="conversion_error">変換エラー</string>
+
+    <string name="menu_home">家</string>
+    <string name="menu_patient_list">患者リスト</string>
+    <string name="menu_transaction_list">取引の詳細</string>
+    <string name="menu_nurse_list">看護師の詳細</string>
+    <string name="successfully_deleted">正常に削除されました</string>
+    <string name="verify_patient_details">V患者の詳細を確認する</string>
+    <string name="register_user">ユーザーの登録</string>
+    <string name="patient_list_view">患者リストビュー</string>
+    <string name="user_list_view">ユーザーリストビュー</string>
+    <string name="transaction_list_view">トランザクションリストビュー</string>
+    <string name="scan_setting">スキャン設定</string>
+        <string name="back_to_scanner">スキャナーに戻る</string>
+    <string name="menu">メニュー</string>
+    <string name="location">位置</string>
+    <string name="system_menu">システムメニュー</string>
+
+        <string name="nurse_details">看護師の詳細</string>
+    <string name="print_pdf">PDFを印刷</string>
+    <string name="sign_up">サインアップ</string>
+    <string name="name">名前</string>
+    <string name="photo">写真</string>
+    <string name="comment">コメント</string>
+    <string name="terminal_used">使用端末</string>
+    <string name="operation">手術</string>
+    <string name="sign_up_user">サインアップユーザー</string>
+    <string name="user_list">ユーザーリスト</string>
+
+    <string name="success_nurse_delete">ナースが正常に削除されました</string>
+
+    <string name="verify_patient">患者の身元を確認する</string>
+    <string name="choose_starting_date">開始日を選択</string>
+    <string name="choose_end_date">終了日を選択</string>
+    <string name="search">検索</string>
+
+    <string name="patient_list">患者リスト</string>
+    <string name="no_user">ユーザーリストが空です。登録してログインしてください</string>
+</resources>

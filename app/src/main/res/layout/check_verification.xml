@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+<View
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:layout_weight="1"/>
+
+  <androidx.cardview.widget.CardView
+      android:layout_width="wrap_content"
+      android:layout_gravity="center"
+      app:cardCornerRadius="10dp"
+      android:backgroundTint="@color/blue"
+      android:layout_height="wrap_content">
+      <LinearLayout
+          android:layout_width="330dp"
+          android:layout_marginStart="15dp"
+          android:orientation="vertical"
+          android:layout_marginEnd="15dp"
+          android:background="@color/teal_200"
+          android:layout_height="350dp">
+          <TextView
+              android:layout_gravity="center"
+              android:textStyle="bold"
+              android:textColor="@color/black"
+              android:textSize="12sp"
+              android:text="@string/please_select_your_location_to_verify_your_device"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"/>
+
+          <View
+              android:layout_width="0dp"
+              android:layout_height="0dp"
+              android:layout_weight="1"/>
+
+          <LinearLayout
+              android:layout_gravity="center"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+
+              <androidx.appcompat.widget.SwitchCompat
+                  android:id="@+id/languageSwitch"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/japanese"
+                  android:textOn="@string/english"
+                  android:textOff="@string/japanese"/>
+
+          </LinearLayout>
+
+          <View
+              android:layout_width="0dp"
+              android:layout_height="0dp"
+              android:layout_weight="1"/>
+
+          <Spinner
+              android:id="@+id/spinLocation"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              android:layout_marginTop="5dp"
+              android:layout_margin="10dp"
+              android:background="@color/background"
+              android:layout_gravity="center"
+              android:popupBackground="@android:color/white"
+              android:scrollbars="none"
+              android:spinnerMode="dropdown" />
+          <View
+              android:layout_width="0dp"
+              android:layout_height="0dp"
+              android:layout_weight="1"/>
+          <Button
+              android:id="@+id/register"
+              android:text="@string/verify_device"
+              android:textSize="13sp"
+              android:textColor="@color/white"
+             android:background="@drawable/capsule"
+              android:layout_width="200dp"
+              android:layout_gravity="center"
+              android:layout_height="50dp"
+              android:layout_marginBottom="10dp"/>
+
+          <View
+              android:layout_width="0dp"
+              android:layout_height="0dp"
+              android:layout_weight="1"/>
+      </LinearLayout>
+  </androidx.cardview.widget.CardView>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+</LinearLayout>

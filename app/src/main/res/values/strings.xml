@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MDS</string>
+    <string name="package_name">com.ramlaxmaninnovation.mds</string>
+
+    <string name="verify_patient_identity">Verify Patient Identity</string>
+    <string name="register_patient">Register Patient</string>
+
+    <string name="language_change"><font color='#a9a9a9'>Language Change</font></string>
+    <string name="please_select_your_location_to_verify_your_device">Please Select your location to validate your device</string>
+
+    <string name="tap_to_click_picture">Tap to click picture</string>
+    <string name="patient_id">Patient ID</string>
+    <string name="patient_name">Patient Name</string>
+    <string name="online">Online</string>
+    <string name="offline">Offline</string>
+    <string name="unknown">UNKNOWN</string>
+    <string name="patient_verified">Successfully Verified:-</string>
+    <string name="set_threshold">Set Threshold :-</string>
+    <string name="set_language">Set Language :-</string>
+    <string name="device_using_status">System Usage Mode:- </string>
+    <string name="medicine_dispense_system">   Face Recognition Audit System</string>
+    <string name="setting">Setting</string>
+    <string name="powered_by_seiko_electric">Powered by </string>
+    <string name="device_location">Device Name</string>
+    <string name="verify_device">Verify Device</string>
+
+    <string name="onlineSwitch">Are you sure you want to switch. All your previous data will be deleted and cannot be retrieve?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="consumption_date">Consumption Date</string>
+    <string name="patient_medicine_log">Patient Medicine Log</string>
+
+    <string name="error">Error!!!</string>
+    <string name="check_your_internet">Please check your internet connection</string>
+    <string name="japanese">Japanese</string>
+    <string name="english">English</string>
+    <string name="photo_error">Please add patient photo</string>
+    <string name="continue_button">Continue</string>
+    <string name="internet_connection">Please check your internet connection</string>
+    <string name="add_your_device_location">Please add your device location</string>
+    <string name="registering_device">Registering your device</string>
+    <string name="plase_wait">Please Wait......</string>
+    <string name="camera_permission">Camera Permission</string>
+    <string name="permission_title">The app couldn\'t function without the camera permission.</string>
+    <string name="allow">ALLOW</string>
+    <string name="close">CLOSE</string>
+    <string name="last_consumption">Last Consumption :- </string>
+    <string name="downloading">Downloading</string>
+    <string name="cancel">Cancel</string>
+    <string name="face_registered">Successfully Registered</string>
+    <string name="no_interest_connection">No Internet Connection</string>
+    <string name="something_went_wrong">something went wrong</string>
+    <string name="connectiontimeout">ConnectionTimeOut</string>
+    <string name="checking">Checking ...</string>
+    <string name="image_selected">Image Selected</string>
+    <string name="no_face_were_found">No faces were found in the picture.</string>
+    <string name="are_you_to_clean_report_table">Are you sure you want to clean report table?</string>
+    <string name="information">Important Information !!!</string>
+    <string name="important_information_to_read">Important information to read before registration of device</string>
+    <string name="there_are_two_cases_in_this_app_to_consider">There are two cases in this app to consider :-</string>
+    <string name="online_mode">* Online Mode:- If you select Online mode the app will communicate with server and data with store in server and fetched from server and internet is always required for this</string>
+    <string name="offline_mode">* Offline Mode:- If you select Offline mode the app will save your information in local storage and data can be lost in case of any kind of damage to device. And if you wish to switch from offline to online mode. But wifi is not required after device registration</string>
+    <string name="view_report">View Report</string>
+    <string name="remarks">Comment</string>
+    <string name="VERIFYING_FOR">Verifying for Patient Name :-</string>
+    <string name="VERIFYING_FOR_User">Verifying for User Name  :-</string>
+    <string name="patient_not_found">Could not authenticate Please try again</string>
+    <string name="seiko_service_and_engineering_corp">SEIKO ELECTRIC CO.LTD.</string>
+    <string name="location_7_25_2_chome_hakata_ku_fukuoka_city_japan_812_0008">Location : 7–25 2-Chome Hakata-ku Fukuoka City, Japan 812-0008</string>
+    <string name="tel_81_92_473_9082">Tel : +81–92-473-9082</string>
+    <string name="patient_success">Patient Found Successfully</string>
+    <string name="quit">Are you sure you want to Quit?</string>
+    <string name="user_not_found">User Not Found.</string>
+    <string name="found">Found</string>
+    <string name="users">user(s).</string>
+    <string name="internal_server_error">Network Error…\n Please Try Again…</string>
+    <string name="verify">Verify</string>
+    <string name="about_developers">About Developers</string>
+    <string name="copyright">©2021 SEIKO ELECTRIC CO.LTD.</string>
+    <string name="version">Version   </string>
+    <string name="patient_already_register"> Is a registered ID.!!!</string>
+    <string name="qr_format_error">Given QR code format is not in valid Format…!!!</string>
+
+    <string name="verify_user">Verify User</string>
+    <string name="enter_id">Enter ID …</string>
+    <string name="status">Status</string>
+    <!--    <string name="verified_customer"></string>-->
+    <string name="front_camera">Front Camera</string>
+    <string name="back_camera">Back Camera</string>
+    <string name="verified_customer">Successfully Verified</string>
+
+    <string name="network_failure">Network Failure</string>
+    <string name="conversion_error">Conversion Error</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_patient_list">Patient List</string>
+    <string name="menu_transaction_list">Transaction Details</string>
+    <string name="menu_nurse_list">Nurse Details</string>
+
+
+    <string name="terminal_name">Terminal Name</string>
+    <string name="user_name">User name</string>
+    <string name="date_time">Date and \ntime of use</string>
+    <string name="user_id">User Id</string>
+    <string name="successfully_deleted">Successfully Deleted</string>
+
+
+
+
+    <string name="verify_patient_details">Verify Patient Details</string>
+    <string name="register_user">Register User</string>
+    <string name="patient_list_view">Patient List View</string>
+    <string name="user_list_view">User List View</string>
+    <string name="transaction_list_view">Transaction List View</string>
+    <string name="scan_setting">Scan Setting</string>
+
+
+
+    <string name="back_to_scanner">back to scanner</string>
+    <string name="menu">Menu</string>
+    <string name="location">Location</string>
+    <string name="system_menu">システムメニュー</string>
+
+    <string name="nurse_details">nurse details</string>
+    <string name="print_pdf">Print PDF</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="name">Name</string>
+    <string name="photo">Photo</string>
+    <string name="comment">Comment</string>
+    <string name="terminal_used">Terminal used</string>
+    <string name="operation">Operation</string>
+    <string name="sign_up_user">Sign Up User</string>
+    <string name="user_list">User List</string>
+    <string name="success_nurse_delete">Successfully Nurse Deleted</string>
+    <string name="verify_patient">Verify Patient Identification</string>
+    <string name="choose_starting_date">Choose Starting Date</string>
+    <string name="choose_end_date">Choose End Date</string>
+    <string name="search">Search</string>
+    <string name="patient_list">Patient List</string>
+    <string name="no_user">User list Empty..Please Register and Login</string>
+
+
+</resources>

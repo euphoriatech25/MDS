@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/drawable/capsule.xml" value="0.3828125" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/drawable/circle_background.xml" value="0.1" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/drawable/curve_bg.xml" value="0.3828125" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/drawable/edit_text.xml" value="0.3828125" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.3828125" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/drawable/ic_baseline_error_24.xml" value="0.3828125" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.3828125" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/drawable/ic_flash_off_24.xml" value="0.3828125" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.3828125" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/drawable/text_style.xml" value="0.3828125" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/about_us.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/activity_face_verification.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/activity_home.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/activity_register_nurse.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/activity_register_patient.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/activity_register_user.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/activity_splash_screen.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/app_bar_main.xml" value="0.3456904541241891" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/camera_view.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/check_verification.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/content_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/dialog_progress_bar.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/dialog_verify_face.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/error_dialog.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/fragment_blank.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/fragment_gallery.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/fragment_nurse_list_view.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/fragment_patient_details.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/fragment_setting_view.xml" value="0.25" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/fragment_slideshow.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/fragment_transaction_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/fragment_user_register.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/fragment_user_registration.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/language.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/languages.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/layout_view_patient_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/layout_view_transaction_report.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/layout_view_user_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/nav_header_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/offline_report_view.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/patient_details_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/patient_report_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/pop_up_dialog.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/pop_up_face_recognization.xml" value="0.5" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/setting_activity.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/transaction_items.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/user_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/menu/activity_home_drawer.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/menu/activity_main_drawer.xml" value="0.33" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/menu/home.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/menu/main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/drawable-v24/border_spinner.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/drawable-v24/capsule.xml" value="0.28703703703703703" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.28703703703703703" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/drawable-v24/textview_background.xml" value="0.28703703703703703" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/drawable/border_spinner.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/drawable/capsule.xml" value="0.28703703703703703" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/drawable/circle_background.xml" value="0.3828125" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/drawable/curve_bg.xml" value="0.28703703703703703" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/drawable/grad_background.xml" value="0.3828125" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.28703703703703703" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/drawable/ic_launcher_background.xml" value="0.28703703703703703" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/drawable/text_style.xml" value="0.28703703703703703" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/layout/activity_face_verification.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/layout/activity_home.xml" value="0.22" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/layout/activity_register_patient.xml" value="0.25" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/layout/activity_splash_screen.xml" value="0.67" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/layout/activity_validate_patient.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/layout/check_verification.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/layout/dialog_progress_bar.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/layout/dialog_register_face.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/layout/dialog_verify_face.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/layout/language.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/layout/languages.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/layout/offline_report_view.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/layout/patient_report_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/layout/pop_up_dialog.xml" value="0.28351449275362317" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/layout/pop_up_face_recognization.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/layout/setting_activity.xml" value="0.5" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/menu/main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.375" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/MDS/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.375" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

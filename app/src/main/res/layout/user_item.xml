@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            app:cardCornerRadius="4dp"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text"
+                android:layout_gravity="center">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/user_id"
+                    style="@style/table_row_design"
+                    android:visibility="gone"
+                    android:text="@string/user_id" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/user_name"
+                    style="@style/table_row_design"
+                    android:text="@string/user_name" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/user_photo"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/user_remark"
+                    style="@style/table_row_design"
+                    android:text="Terminal " />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/terminal_name"
+                    style="@style/table_row_design"
+                    android:text="Terminal " />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp">
+
+
+                    <ImageButton
+                        android:id="@+id/delete_nurse"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:background="@color/colorAccent"
+                        android:src="@drawable/ic_baseline_delete_24" />
+
+                    <Button
+                        android:id="@+id/login_nurse"
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:text="Login User"
+                        android:layout_marginLeft="5dp"
+                        android:background="@color/blue"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:src="@drawable/ic_baseline_delete_24" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </HorizontalScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

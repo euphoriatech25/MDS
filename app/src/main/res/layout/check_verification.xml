@@ -58,14 +58,13 @@
               android:layout_width="0dp"
               android:layout_height="0dp"
               android:layout_weight="1"/>
-
           <Spinner
               android:id="@+id/spinLocation"
               android:layout_width="match_parent"
               android:layout_height="50dp"
               android:layout_marginTop="5dp"
               android:layout_margin="10dp"
-              android:background="@color/background"
+              android:background="@drawable/edit_text"
               android:layout_gravity="center"
               android:popupBackground="@android:color/white"
               android:scrollbars="none"

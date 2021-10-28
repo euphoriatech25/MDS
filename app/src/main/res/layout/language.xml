@@ -9,6 +9,8 @@
     android:textColor="#3949AB"
     android:textStyle="bold"
     android:textSize="20sp"
+    android:background="@drawable/edit_text"
+    android:drawableLeft="@drawable/ic_baseline_add_location_24"
     android:padding="10dp"
     android:layout_margin="10dp"
     android:textAlignment="inherit"

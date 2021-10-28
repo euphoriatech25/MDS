@@ -11,6 +11,7 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
@@ -30,6 +31,7 @@ import com.ramlaxmaninnovation.home.showToast
 import com.ramlaxmaninnovation.mds.R
 import com.ramlaxmaninnovation.mds.databinding.CameraViewBinding
 import com.ramlaxmaninnovation.mds.getPatientDetails.FaceVerificationOnline
+import com.ramlaxmaninnovation.mds.utils.AppUtils
 import com.ramlaxmaninnovation.mds.utils.UserPrefManager
 
 class CameraViewActivity : AppCompatActivity() {
@@ -70,8 +72,8 @@ class CameraViewActivity : AppCompatActivity() {
             binding.previewView.visibility= View.GONE
             Toast.makeText(this,"Please register User first",Toast.LENGTH_SHORT).show()
         } else {
-            binding.location.setText(getString(R.string.location) + " :- " + userPrefManager.location)
-            binding.nurseDetails.setText(getString(R.string.user_name) + " :- " + userPrefManager.nurseDetails[1])
+            binding.location.text = getString(R.string.location) + " :- " + userPrefManager.location
+            binding.nurseDetails.text = getString(R.string.user_name) + " :- " + userPrefManager.nurseDetails[1]
             val decodedString: ByteArray =
                 Base64.decode((userPrefManager.nurseDetails[2]), Base64.DEFAULT)
             val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
@@ -82,7 +84,26 @@ class CameraViewActivity : AppCompatActivity() {
 
 
         }
+        if( userPrefManager.cameraView.equals("back")){
+            binding.cameraSwitch.isChecked=true
+            binding.cameraSwitch.text = binding.cameraSwitch.textOn
 
+        }else{
+            binding.cameraSwitch.isChecked=false
+            binding.cameraSwitch.text = binding.cameraSwitch.textOff
+        }
+
+        binding.cameraSwitch.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                binding.cameraSwitch.text = binding.cameraSwitch.textOn
+                userPrefManager.cameraView = "back"
+
+            } else {
+                binding.cameraSwitch.text = binding.cameraSwitch.textOff
+                userPrefManager.cameraView = "front"
+
+            }
+        })
 
         changeStatusBarColor()
         if (isCameraPermissionGranted()) {
@@ -167,22 +188,27 @@ class CameraViewActivity : AppCompatActivity() {
                             Log.e(TAG, "processImageProxy: " + barcodeList[0].rawValue)
                             cameraProvider.unbindAll()
                             setFlashOffIcon()
-                            Snackbar.make(
-                                this@CameraViewActivity, binding.clMain,
-                                "${barcodeList[0].rawValue!!}", Snackbar.LENGTH_INDEFINITE
-                            )
-                                .setAction(getString(R.string.verify_patient)) {
+                            if(barcodeList.isNotEmpty()){
+                                Snackbar.make(
+                                    this@CameraViewActivity, binding.clMain,
+                                    "${barcodeList[0].rawValue!!}", Snackbar.LENGTH_INDEFINITE
+                                )
+                                    .setAction(getString(R.string.verify_patient)) {
 
-                                    splitted = barcodeList[0].rawValue!!.split("　").toTypedArray()
-                                    val intent = Intent(
-                                        this@CameraViewActivity,
-                                        FaceVerificationOnline::class.java
-                                    )
-                                    intent.putExtra("faceID", splitted!![0])
-                                    startActivity(intent)
-                                    finish()
-                                }
-                                .show()
+                                        splitted = barcodeList[0].rawValue!!.split("　").toTypedArray()
+                                        val intent = Intent(
+                                            this@CameraViewActivity,
+                                            FaceVerificationOnline::class.java
+                                        )
+                                        intent.putExtra("faceID", splitted!![0])
+                                        startActivity(intent)
+                                        finish()
+                                    }     .show()
+                            }else{
+                                Toast.makeText(this@CameraViewActivity,getString(R.string.invalid_qr),Toast.LENGTH_SHORT).show()
+                            }
+
+
                         }
                     }
                 }.addOnFailureListener {

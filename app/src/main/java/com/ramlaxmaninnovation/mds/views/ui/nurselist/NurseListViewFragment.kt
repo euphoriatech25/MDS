@@ -2,6 +2,8 @@ package com.ramlaxmaninnovation.mds.views.ui.nurselist
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
@@ -23,11 +25,13 @@ import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.opencsv.CSVWriter
+import com.ramlaxmaninnovation.App
 import com.ramlaxmaninnovation.home.MainActivity
 import com.ramlaxmaninnovation.mds.R
 import com.ramlaxmaninnovation.mds.database.User
 import com.ramlaxmaninnovation.mds.database.UserDatabaseUtils
 import com.ramlaxmaninnovation.mds.databinding.FragmentNurseListViewBinding
+import com.ramlaxmaninnovation.mds.utils.AppUtils
 import com.ramlaxmaninnovation.mds.utils.UserPrefManager
 import com.ramlaxmaninnovation.mds.views.ui.nurseregister.UserRegistration
 import java.io.File
@@ -99,7 +103,7 @@ class NurseListViewFragment : AppCompatActivity() {
 
                     var deleteNurse: ImageButton = itemView.findViewById(R.id.delete_nurse)
 
-
+                    user_id.text=i.faceID
                     user_name.text = i.personName
                     user_id.text = i.id.toString()
                     user_remarks.text = i.patientRemarks
@@ -124,14 +128,35 @@ class NurseListViewFragment : AppCompatActivity() {
 
 
                    deleteNurse.setOnClickListener {
-                        UserDatabaseUtils.deleteUsersFromFaceID(
-                            this@NurseListViewFragment,
-                            i.faceID
-                        )
-                       Toast.makeText(this@NurseListViewFragment,getString(R.string.success_nurse_delete),Toast.LENGTH_SHORT).show()
-                       val intent = Intent(this@NurseListViewFragment, NurseListViewFragment::class.java)
-                       startActivity(intent)
-                       finish()
+
+
+
+                       val dialogClickListener =
+                           DialogInterface.OnClickListener { dialog, which ->
+                               when (which) {
+                                   DialogInterface.BUTTON_POSITIVE -> {
+
+                                       UserDatabaseUtils.deleteUsersFromFaceID(
+                                           this@NurseListViewFragment,
+                                           i.faceID
+                                       )
+                                       Toast.makeText(this@NurseListViewFragment,getString(R.string.success_nurse_delete),Toast.LENGTH_SHORT).show()
+                                       val intent = Intent(this@NurseListViewFragment, NurseListViewFragment::class.java)
+                                       startActivity(intent)
+                                       finish()
+
+                                   }
+                                   DialogInterface.BUTTON_NEGATIVE -> {
+                                       dialog.dismiss()
+                                   }
+                               }
+                           }
+
+                       val builder: AlertDialog.Builder = AlertDialog.Builder(this@NurseListViewFragment)
+                       builder.setMessage(getString(R.string.delete_user))
+                           .setPositiveButton(getString(R.string.yes), dialogClickListener)
+                           .setNegativeButton(getString(R.string.no), dialogClickListener).show()
+
                    }
 
                     binding.availableNurseList.addView(itemView);

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MDS</string>
+    <string name="app_name">iCchy</string>
     <string name="package_name">com.ramlaxmaninnovation.mds</string>
 
     <string name="verify_patient_identity">Verify Patient Identity</string>
@@ -101,7 +101,7 @@
 
     <string name="terminal_name">Terminal Name</string>
     <string name="user_name">User name</string>
-    <string name="date_time">Date and \ntime of use</string>
+    <string name="date_time">Date and time of use</string>
     <string name="user_id">User Id</string>
     <string name="successfully_deleted">Successfully Deleted</string>
 
@@ -139,6 +139,12 @@
     <string name="search">Search</string>
     <string name="patient_list">Patient List</string>
     <string name="no_user">User list Empty..Please Register and Login</string>
+    <string name="delete_patient">Are you sure you want to delete this Patient details?</string>
+    <string name="delete_user">Are you sure you want to delete this user details?</string>
+    <string name="success_patient">Patient successfully registered</string>
+    <string name="verifying_user">Verifying for User Login</string>
+    <string name="invalid_qr">Invalid QR code</string>
+    <string name="no_name">Patient Name and Surname not found</string>
 
 
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MDS</string>
+    <string name="app_name">iCchy</string>
     <string name="verify_patient_identity">患者の身元を確認する</string>
     <string name="register_patient">患者登録</string>
 
@@ -135,23 +135,32 @@
     <string name="system_menu">システムメニュー</string>
 
         <string name="nurse_details">看護師の詳細</string>
-    <string name="print_pdf">PDFを印刷</string>
-    <string name="sign_up">サインアップ</string>
+    <string name="print_pdf">印刷</string>
+    <string name="sign_up">新規登録</string>
     <string name="name">名前</string>
     <string name="photo">写真</string>
     <string name="comment">コメント</string>
     <string name="terminal_used">使用端末</string>
-    <string name="operation">手術</string>
-    <string name="sign_up_user">サインアップユーザー</string>
-    <string name="user_list">ユーザーリスト</string>
+    <string name="operation">操作</string>
+    <string name="sign_up_user">新規登録</string>
+    <string name="user_list">使用者一覧</string>
 
     <string name="success_nurse_delete">ナースが正常に削除されました</string>
 
     <string name="verify_patient">患者の身元を確認する</string>
-    <string name="choose_starting_date">開始日を選択</string>
-    <string name="choose_end_date">終了日を選択</string>
-    <string name="search">検索</string>
+    <string name="choose_starting_date">開始日</string>
+    <string name="choose_end_date">終了日</string>
+    <string name="search">絞り込み</string>
 
-    <string name="patient_list">患者リスト</string>
+    <string name="patient_list">患者一覧</string>
     <string name="no_user">ユーザーリストが空です。登録してログインしてください</string>
+    <string name="delete_user">このユーザーの詳細を削除してもよろしいですか？</string>
+    <string name="delete_patient">この患者の詳細を削除してもよろしいですか？</string>
+    <string name="success_patient">患者の登録に成功</string>
+
+    <string name="verifying_user">ユーザーログインの確認</string>
+
+    <string name="invalid_qr">無効なQRコード</string>
+    <string name="no_name">患者名と名前が見つかりません</string>
+
 </resources>

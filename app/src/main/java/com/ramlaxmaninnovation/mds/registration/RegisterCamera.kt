@@ -163,31 +163,36 @@ class RegisterCamera  : AppCompatActivity(), CheckAvailability.CallbackAvailabil
                             Log.e(TAG, "processImageProxy: " + barcodeList[0].rawValue)
                             cameraProvider.unbindAll()
                             setFlashOffIcon()
-                            Snackbar.make(
-                                this@RegisterCamera, binding.clMain,
-                                "${barcodeList[0].rawValue!!}", Snackbar.LENGTH_INDEFINITE
-                            )
-                                .setAction(getString(R.string.register_patient)) {
+                            if(barcodeList.isNotEmpty()){
+                                Snackbar.make(
+                                    this@RegisterCamera, binding.clMain,
+                                    "${barcodeList[0].rawValue!!}", Snackbar.LENGTH_INDEFINITE
+                                )
+                                    .setAction(getString(R.string.register_patient)) {
 //                                    startCamera()
-                                    splitted = barcodeList[0].rawValue!!.split("　").toTypedArray()
+                                        splitted = barcodeList[0].rawValue!!.split("　").toTypedArray()
 
 
-                                    if (AppUtils.isNetworkAvailable(this)) {
-                                        CheckAvailability.getUserDetails(
-                                            this@RegisterCamera,
-                                            splitted!![0]
-                                        )
+                                        if (AppUtils.isNetworkAvailable(this)) {
+                                            CheckAvailability.getUserDetails(
+                                                this@RegisterCamera,
+                                                splitted!![0]
+                                            )
 
-                                    } else {
-                                        Toast.makeText(
-                                            this@RegisterCamera,
-                                            getString(R.string.no_interest_connection),
-                                            Toast.LENGTH_SHORT
-                                        ).show()
+                                        } else {
+                                            Toast.makeText(
+                                                this@RegisterCamera,
+                                                getString(R.string.no_interest_connection),
+                                                Toast.LENGTH_SHORT
+                                            ).show()
 
+                                        }
                                     }
-                                }
-                                .show()
+                                    .show()
+                            }else{
+                                Toast.makeText(this@RegisterCamera,getString(R.string.invalid_qr),Toast.LENGTH_SHORT).show()
+                            }
+
                         }
                     }
                 }.addOnFailureListener {
@@ -268,14 +273,37 @@ class RegisterCamera  : AppCompatActivity(), CheckAvailability.CallbackAvailabil
     }
 
     override fun onQueryCompleted(users: GetDetailsModel?) {
-        val intent = Intent(
-            this@RegisterCamera,
-            RegisterPatient::class.java
-        )
-        intent.putExtra("patient_id", splitted!![0])
-        intent.putExtra("patient_name", splitted!![1] + " " + splitted!![2])
-        startActivity(intent)
-        finish()
+        if(splitted?.size==3){
+            val intent = Intent(
+                this@RegisterCamera,
+                RegisterPatient::class.java
+            )
+            intent.putExtra("patient_id", splitted!![0])
+            intent.putExtra("patient_name", splitted!![1] + " " + splitted!![2])
+            startActivity(intent)
+            finish()
+        }else if(splitted?.size==2){
+            val intent = Intent(
+                this@RegisterCamera,
+                RegisterPatient::class.java
+            )
+            intent.putExtra("patient_id", splitted!![0])
+            intent.putExtra("patient_name", splitted!![1] )
+            startActivity(intent)
+            finish()
+        }else if(splitted?.size==1){
+            val intent = Intent(
+                this@RegisterCamera,
+                RegisterPatient::class.java
+            )
+            intent.putExtra("patient_id", splitted!![0])
+            startActivity(intent)
+            finish()
+            Toast.makeText(this@RegisterCamera,getString(R.string.no_name),Toast.LENGTH_SHORT).show()
+
+        }else{
+            Toast.makeText(this@RegisterCamera,getString(R.string.invalid_qr),Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onQueryError(users: GetDetailsModel?) {

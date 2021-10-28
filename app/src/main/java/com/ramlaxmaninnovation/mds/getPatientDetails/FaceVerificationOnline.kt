@@ -110,29 +110,33 @@ class FaceVerificationOnline : AppCompatActivity(), GetDetails.CallbackOnline {
     private fun bindPreview(cameraProvider : ProcessCameraProvider) {
         val preview : Preview = Preview.Builder().build()
         Log.i("TAG", "bindPreview: "+userPrefManager?.cameraView)
-        if(userPrefManager?.cameraView.equals("front")){
-            val cameraSelector : CameraSelector = CameraSelector.Builder()
-                .requireLensFacing( CameraSelector.LENS_FACING_FRONT )
-                .build()
-            preview.setSurfaceProvider( previewView.surfaceProvider )
-            val imageFrameAnalysis = ImageAnalysis.Builder()
-                .setTargetResolution( Size( 480, 640 ) )
-                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-                .build()
-            imageFrameAnalysis.setAnalyzer(Executors.newSingleThreadExecutor(), frameAnalyser )
-            cameraProvider.bindToLifecycle(this as LifecycleOwner, cameraSelector, preview , imageFrameAnalysis )
-        }else{
-            val cameraSelector : CameraSelector = CameraSelector.Builder()
-                .requireLensFacing( CameraSelector.LENS_FACING_BACK )
-                .build()
-            preview.setSurfaceProvider( previewView.surfaceProvider )
-            val imageFrameAnalysis = ImageAnalysis.Builder()
-                .setTargetResolution( Size( 480, 640 ) )
-                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-                .build()
-            imageFrameAnalysis.setAnalyzer(Executors.newSingleThreadExecutor(), frameAnalyser )
-            cameraProvider.bindToLifecycle(this as LifecycleOwner, cameraSelector, preview , imageFrameAnalysis )
-        }
+        try {
+            if(userPrefManager?.cameraView.equals("front")){
+                val cameraSelector : CameraSelector = CameraSelector.Builder()
+                    .requireLensFacing( CameraSelector.LENS_FACING_FRONT )
+                    .build()
+                preview.setSurfaceProvider( previewView.surfaceProvider )
+                val imageFrameAnalysis = ImageAnalysis.Builder()
+                    .setTargetResolution( Size( 480, 640 ) )
+                    .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                    .build()
+                imageFrameAnalysis.setAnalyzer(Executors.newSingleThreadExecutor(), frameAnalyser )
+                cameraProvider.bindToLifecycle(this as LifecycleOwner, cameraSelector, preview , imageFrameAnalysis )
+            }else{
+                val cameraSelector : CameraSelector = CameraSelector.Builder()
+                    .requireLensFacing( CameraSelector.LENS_FACING_BACK )
+                    .build()
+                preview.setSurfaceProvider( previewView.surfaceProvider )
+                val imageFrameAnalysis = ImageAnalysis.Builder()
+                    .setTargetResolution( Size( 480, 640 ) )
+                    .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                    .build()
+                imageFrameAnalysis.setAnalyzer(Executors.newSingleThreadExecutor(), frameAnalyser )
+                cameraProvider.bindToLifecycle(this as LifecycleOwner, cameraSelector, preview , imageFrameAnalysis )
+            }
+
+        }catch (e:IllegalArgumentException ){}
+
 
     }
 

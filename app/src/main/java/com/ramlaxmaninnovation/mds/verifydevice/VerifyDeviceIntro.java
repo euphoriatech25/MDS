@@ -33,6 +33,7 @@ import com.ramlaxmaninnovation.mds.network.ServiceConfig;
 import com.ramlaxmaninnovation.mds.utils.AppUtils;
 import com.ramlaxmaninnovation.mds.utils.ErrorMsg;
 import com.ramlaxmaninnovation.mds.utils.UserPrefManager;
+import com.ramlaxmaninnovation.mds.views.ui.transactionlist.Data;
 
 import org.json.JSONObject;
 
@@ -57,6 +58,7 @@ public class VerifyDeviceIntro extends AppCompatActivity {
     ProgressDialog pd;
     UserPrefManager userPrefManager;
    String selectedLocation;
+
     @SuppressLint("HardwareIds")
     public static String ANDROID_ID(Context context) {
         return Settings.Secure.getString(context.getContentResolver(),

@@ -36,9 +36,8 @@ import java.io.FileWriter
 import java.nio.file.Files
 import java.text.SimpleDateFormat
 import java.util.*
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.text.DateFormat
+import kotlin.collections.ArrayList
 
 
 class TransactionListFragment : AppCompatActivity() {
@@ -46,8 +45,13 @@ class TransactionListFragment : AppCompatActivity() {
     lateinit var productAdapter: TransactionAdapter
     var calStarting = Calendar.getInstance()
     var calEnding = Calendar.getInstance()
-    var userPrefManager: UserPrefManager? = null
 
+    var calStartingDisplay = Calendar.getInstance()
+    var calEndingDisplay = Calendar.getInstance()
+
+
+    var userPrefManager: UserPrefManager? = null
+    private val dataArrayList = ArrayList<Data>()
     private lateinit var transactionModel: TransactionModel
     private val TAG = "TransactionListFragment"
 
@@ -101,17 +105,24 @@ class TransactionListFragment : AppCompatActivity() {
         binding.searchBetweenTransaction.setOnClickListener {
             if(transactionModel.data.isNotEmpty())
             if (startingDate.isNotEmpty() && endingDate.isNotEmpty()) {
-                val format: DateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.ENGLISH)
+                dataArrayList.clear()
+                val format: DateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
 
-                Log.i(TAG, "init: "+startingDate+" "+endingDate)
+                Log.i(TAG, "init: $startingDate $endingDate")
 
                 val datestart: Date = format.parse(startingDate)
                 val dateend: Date = format.parse(endingDate)
              for(i in  transactionModel.data){
-                 val total: Date = format.parse(i.last_consumption_date)
+                 var date:String=i.last_consumption_date.substring(0, i.last_consumption_date.length - 9)
+                 val total: Date = format.parse(date)
                  if(total.after(datestart)&&total.before(dateend)){
-                     Log.i(TAG, "init: "+total.time+" ")
+                     dataArrayList.add(i)
+                     Log.i(TAG, "init: "+i.last_consumption_date+" ")
                  }
+
+                 productAdapter.differ.submitList(dataArrayList)
+                 binding.transactionRecyclerView.adapter = productAdapter
+                 productAdapter.notifyDataSetChanged()
 
              }
 
@@ -135,8 +146,13 @@ class TransactionListFragment : AppCompatActivity() {
             ) {
                 calStarting.set(Calendar.YEAR, year)
                 calStarting.set(Calendar.MONTH, monthOfYear)
-                calStarting.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                updateDateInViewStarting()
+                calStarting.set(Calendar.DAY_OF_MONTH, dayOfMonth-1)
+
+
+                calStartingDisplay.set(Calendar.YEAR, year)
+                calStartingDisplay.set(Calendar.MONTH, monthOfYear)
+                calStartingDisplay.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                updateDateInViewStarting(calStartingDisplay)
             }
         }
 
@@ -147,8 +163,13 @@ class TransactionListFragment : AppCompatActivity() {
             ) {
                 calEnding.set(Calendar.YEAR, year)
                 calEnding.set(Calendar.MONTH, monthOfYear)
-                calEnding.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                updateDateInViewEnding()
+                calEnding.set(Calendar.DAY_OF_MONTH, dayOfMonth+1)
+
+                calEndingDisplay.set(Calendar.YEAR, year)
+                calEndingDisplay.set(Calendar.MONTH, monthOfYear)
+                calEndingDisplay.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+                updateDateInViewEnding(calEndingDisplay)
             }
         }
 
@@ -183,19 +204,17 @@ class TransactionListFragment : AppCompatActivity() {
     }
 
 
-    private fun updateDateInViewStarting() {
-        val myFormat = "MM/dd/yyyy" // mention the format you need
+    private fun updateDateInViewStarting(calStartingDisplay: Calendar) {
+        val myFormat = "yyyy-MM-dd" // mention the format you need
         val sdf = SimpleDateFormat(myFormat, Locale.US)
-        binding.startingDate.text = sdf.format(calStarting.getTime())
+        binding.startingDate.text = sdf.format(calStartingDisplay.getTime())
         startingDate = sdf.format(calStarting.getTime())
-
-
     }
 
-    private fun updateDateInViewEnding() {
-        val myFormat = "MM/dd/yyyy" // mention the format you need
+    private fun updateDateInViewEnding(calEndingDisplay: Calendar) {
+        val myFormat = "yyyy-MM-dd" // mention the format you need
         val sdf = SimpleDateFormat(myFormat, Locale.US)
-        binding.endingDate.text = sdf.format(calEnding.getTime())
+        binding.endingDate.text = sdf.format(calEndingDisplay.getTime())
         endingDate = sdf.format(calEnding.getTime())
 
     }

@@ -50,6 +50,10 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.pow
 import kotlin.math.sqrt
+import android.app.Activity
+
+
+
 
 
 class FrameAnalyser(
@@ -148,9 +152,9 @@ class FrameAnalyser(
                                     context.getString(R.string.patient_id) + " " + idFace
                             }else{
                                 patient_details.text =
-                                    context.getString(R.string.VERIFYING_FOR) +userName
+                                   context.getString(R.string.verifying_user)+" :-" +userName
                                 continue_verification.text =
-                                    context.getString(R.string.patient_id) + " " + idFace
+                                    context.getString(R.string.user_id) + "  " + idFace
                             }
 
 
@@ -175,6 +179,7 @@ class FrameAnalyser(
                                     }
                                     soundEffectForSuccessfullValidation(context)
                                 }else if (source=="user"){
+                                    soundEffectForSuccessfullValidation(context)
                                     val userPrefManager = UserPrefManager(context)
                                     userPrefManager.setNurseDetails(idFace,userName,photo)
                                 }
@@ -192,8 +197,6 @@ class FrameAnalyser(
                                 status_face_verification.text =
                                     context.getString(R.string.patient_not_found)
                                 statusDisplay.setCardBackgroundColor(Color.RED)
-                                patient_details.text =
-                                    context.getString(R.string.VERIFYING_FOR) + userName
                                 patient_details.setTextColor(Color.WHITE)
                                 continue_verification.setTextColor(Color.WHITE)
                                 status_face_verification.setTextColor(Color.WHITE)
@@ -330,47 +333,49 @@ class FrameAnalyser(
     }
 
     fun showDialog(activity: Context, msg: String?, b: Boolean) {
+        if (!(context as Activity).isFinishing) {
+            val dialog = Dialog(activity)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setCancelable(false)
+            dialog.setContentView(R.layout.pop_up_face_recognization)
+            val verification_result = dialog.findViewById(R.id.verification_result) as TextView
+            val response_background = dialog.findViewById(R.id.response_background) as CardView
+            verification_result.text = msg
 
-        val dialog = Dialog(activity)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(false)
-        dialog.setContentView(R.layout.pop_up_face_recognization)
-        val verification_result = dialog.findViewById(R.id.verification_result) as TextView
-        val response_background = dialog.findViewById(R.id.response_background) as CardView
-        verification_result.text = msg
-
-        val cancel = dialog.findViewById(R.id.cancel) as ImageView
+            val cancel = dialog.findViewById(R.id.cancel) as ImageView
 
 
 
-        cancel.setOnClickListener {
-            val intent = Intent(context, CameraViewActivity::class.java).apply {
+            cancel.setOnClickListener {
+                val intent = Intent(context, CameraViewActivity::class.java).apply {
+                }
+                context.startActivity(intent)
+                dialog.dismiss()
             }
-            context.startActivity(intent)
-            dialog.dismiss()
-        }
 
 
-        if (b) {
-            verification_result.setText(context.getString(R.string.patient_verified) + "\n" + userName)
-            response_background.setCardBackgroundColor(Color.GREEN)
-            verification_result.setTextColor(Color.GREEN)
-        } else {
+            if (b) {
+                verification_result.setText(context.getString(R.string.patient_verified) + "\n" + userName)
+                response_background.setCardBackgroundColor(Color.GREEN)
+                verification_result.setTextColor(Color.GREEN)
+            } else {
 //            verification_result.setText(context.getString(R.string.unknown))
 //            response_background.setCardBackgroundColor(Color.RED)
 //            verification_result.setTextColor(Color.RED)
-        }
-
-
-        val continueBtn = dialog.findViewById(R.id.continueBtn) as Button
-        continueBtn.setOnClickListener {
-            val intent = Intent(context, CameraViewActivity::class.java).apply {
             }
-            context.startActivity(intent)
-            dialog.dismiss()
+
+
+            val continueBtn = dialog.findViewById(R.id.continueBtn) as Button
+            continueBtn.setOnClickListener {
+                val intent = Intent(context, CameraViewActivity::class.java).apply {
+                }
+                context.startActivity(intent)
+                dialog.dismiss()
+            }
+
+            dialog.show()
+          }
         }
 
-        dialog.show()
-    }
 
 }

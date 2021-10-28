@@ -313,9 +313,11 @@ class RegisterPatient : AppCompatActivity(){
                     response: Response<RegisterResponse>
                 ) {
                     if (response.isSuccessful) {
-                        Toast.makeText(this@RegisterPatient,
-                            getString(R.string.patient_success),
-                            Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@RegisterPatient,
+                           getString(R.string.success_patient),
+                            Toast.LENGTH_SHORT
+                        ).show()
                         val intent = Intent(this@RegisterPatient, PatientDetailsFragment::class.java).apply {
                         }
                         startActivity(intent)

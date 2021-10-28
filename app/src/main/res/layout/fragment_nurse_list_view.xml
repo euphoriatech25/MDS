@@ -66,7 +66,7 @@
         android:id="@+id/nurse_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -81,16 +81,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center">
 
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-
                 <TextView
-                    style="@style/table_row_design"
-                    android:text="@string/user_id"
-                    android:visibility="gone" />
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/blue"
+                    android:text="@string/user_id"/>
 
                 <View
                     android:layout_width="0dp"
@@ -106,11 +103,19 @@
                     android:layout_height="0dp"
                     android:layout_weight="1" />
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
+                <TextView
+                    style="@style/table_row_design"
+                    android:text="@string/photo" />
 
                 <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    style="@style/table_row_design"
+                    android:text="@string/remarks" />
+               <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_weight="1" />

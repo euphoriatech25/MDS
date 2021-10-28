@@ -2,23 +2,29 @@ package com.ramlaxmaninnovation.mds.views.ui.patientlist
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import coil.api.load
 import com.google.android.material.snackbar.Snackbar
 import com.opencsv.CSVWriter
 import com.ramlaxmaninnovation.App
@@ -27,6 +33,7 @@ import com.ramlaxmaninnovation.mds.R
 import com.ramlaxmaninnovation.mds.databinding.FragmentPatientDetailsBinding
 import com.ramlaxmaninnovation.mds.network.RetroOldApi
 import com.ramlaxmaninnovation.mds.network.ServiceConfig
+import com.ramlaxmaninnovation.mds.registration.EditPatientDetails
 import com.ramlaxmaninnovation.mds.registration.RegisterCamera
 import com.ramlaxmaninnovation.mds.registration.RegisterPatient
 import com.ramlaxmaninnovation.mds.repository.AppRepository
@@ -38,6 +45,7 @@ import com.ramlaxmaninnovation.mds.utils.subUtils.errorSnack
 import com.ramlaxmaninnovation.mds.verifydevice.CameraViewActivity
 import com.ramlaxmaninnovation.mds.viewModel.PatientListViewModel
 import com.ramlaxmaninnovation.mds.viewModel.ViewModelProviderFactory
+import kotlinx.android.synthetic.main.patient_details_item.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -46,9 +54,13 @@ import java.io.FileWriter
 import java.lang.Exception
 import java.nio.file.Files
 import java.util.ArrayList
+import android.content.DialogInterface
 
 
-class PatientDetailsFragment : AppCompatActivity() {
+
+
+
+class PatientDetailsFragment :  AppCompatActivity() {
 
     private val TAG = "PatientDetailsFragment"
     private var _binding: FragmentPatientDetailsBinding? = null
@@ -79,10 +91,12 @@ class PatientDetailsFragment : AppCompatActivity() {
         setContentView(binding.root)
         changeStatusBarColor()
 
-        binding.onBckPress.setOnClickListener {  val intent = Intent(this, MainActivity::class.java).apply {
-            intent.putExtra("from","Register")
+        binding.onBckPress.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java).apply {
+                intent.putExtra("from", "Register")
+            }
+            startActivity(intent)
         }
-            startActivity(intent) }
         userPrefManager = UserPrefManager(this)
         setupViewModel()
 
@@ -96,12 +110,12 @@ class PatientDetailsFragment : AppCompatActivity() {
 
     private fun init() {
 
-        productAdapter = PatientAdapter()
-        layoutManager = GridLayoutManager(this, 1)
-        binding.patientDetailsRecyclerView.layoutManager = layoutManager
-        binding.patientDetailsRecyclerView.setHasFixedSize(true)
-        binding.patientDetailsRecyclerView.isFocusable = false
-        binding.patientDetailsRecyclerView.adapter = productAdapter
+//        productAdapter = PatientAdapter()
+//        layoutManager = GridLayoutManager(this, 1)
+//        binding.patientDetailsRecyclerView.layoutManager = layoutManager
+//        binding.patientDetailsRecyclerView.setHasFixedSize(true)
+//        binding.patientDetailsRecyclerView.isFocusable = false
+//        binding.patientDetailsRecyclerView.adapter = productAdapter
 
 
         binding.signupUser.setOnClickListener {
@@ -138,13 +152,17 @@ class PatientDetailsFragment : AppCompatActivity() {
                     hideProgressBar()
                     response.data?.let { picsResponse ->
                         productModel = picsResponse
-                        productAdapter.differ.submitList(productModel.data)
-                        binding.patientDetailsRecyclerView.adapter = productAdapter
+//                        productAdapter.differ.submitList(productModel.data)
+//                        binding.patientDetailsRecyclerView.adapter = productAdapter
 
-                         if(productModel.data.isNotEmpty()){
-                            binding.convertTableToPdf.setOnClickListener { verifyStoragePermissions(this) }
-                         }
-//                        getPatientView(productModel.data)
+                        if (productModel.data.isNotEmpty()) {
+                            binding.convertTableToPdf.setOnClickListener {
+                                verifyStoragePermissions(
+                                    this
+                                )
+                            }
+                        }
+                        viewPatientDetails(productModel.data)
                     }
                 }
 
@@ -162,19 +180,117 @@ class PatientDetailsFragment : AppCompatActivity() {
     }
 
     private fun viewPatientDetails(data: List<Data>) {
-//        da
-//        val itemView: View = LayoutInflater.from(this@NurseListViewFragment)
-//            .inflate(R.layout.user_item, binding.availableNurseList, false)
-//
-//        var user_id: TextView = itemView.findViewById(R.id.user_id)
-//        var user_name: TextView = itemView.findViewById(R.id.user_name)
-//        var user_photo: ImageView = itemView.findViewById(R.id.user_photo)
-//        var user_remarks: TextView = itemView.findViewById(R.id.user_remark)
-//        var terminal_used: TextView = itemView.findViewById(R.id.terminal_name)
-//        var loginNurse: TextView = itemView.findViewById(R.id.login_nurse)
 
+        var imageBitmap:String
+        if(data.isNotEmpty()){
+            for(i in data.indices){
+                val itemView: View = LayoutInflater.from(this@PatientDetailsFragment)
+                    .inflate(R.layout.patient_details_item, binding.patientDetailsRecyclerView, false)
+
+                var patient_id: TextView = itemView.findViewById(R.id.patient_id)
+                var patient_name: TextView = itemView.findViewById(R.id.patient_name)
+                var patient_photo: ImageView = itemView.findViewById(R.id.patient_photo)
+                var patient_comment: TextView = itemView.findViewById(R.id.patient_comment)
+                var terminal_used: TextView = itemView.findViewById(R.id.terminal_used)
+                var patient_no: TextView = itemView.findViewById(R.id.patient_no)
+                var edit_patient: ImageButton = itemView.findViewById(R.id.edit_patient)
+                var delete_patient: ImageButton = itemView.findViewById(R.id.delete_patient)
+
+                patient_no.text = i.toString()
+                patient_id.text = data[i].patient_id
+                patient_name.text = data[i].name
+                patient_comment.text=data[i].remarks
+                terminal_used.text = data[i].device_name
+                imageBitmap = data[i].photo_string
+
+                val decodedString: ByteArray = Base64.decode(imageBitmap, Base64.DEFAULT)
+                val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+                patient_photo.load(decodedByte)
+                binding.patientDetailsRecyclerView.addView(itemView)
+
+
+                edit_patient.setOnClickListener {
+                    Log.i("TAG", "onBindViewHolder: i m here")
+                    val intent = Intent( App.getContext(), EditPatientDetails::class.java)
+
+                    intent.putExtra("patient_id", data[i].patient_id)
+
+                    intent.putExtra("patient_name",data[i].name)
+
+                    intent.putExtra("patient_remark",data[i].remarks)
+
+                    intent.putExtra("patient_photo",data[i].photo_string)
+
+                    intent.putExtra("photo",data[i].photo)
+
+                    startActivity(intent)
+                }
+                delete_patient.setOnClickListener {
+
+                    val dialogClickListener =
+                        DialogInterface.OnClickListener { dialog, which ->
+                            when (which) {
+                                DialogInterface.BUTTON_POSITIVE -> {
+
+                                    deleteDevice(data[i].patient_id,
+                                        AppUtils.ANDROID_ID(App.getContext())
+                                    )
+                                }
+                                DialogInterface.BUTTON_NEGATIVE -> {
+                                    dialog.dismiss()
+                                }
+                            }
+                        }
+
+                    val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+                    builder.setMessage(getString(R.string.delete_patient))
+                        .setPositiveButton(getString(R.string.yes), dialogClickListener)
+                        .setNegativeButton(getString(R.string.no), dialogClickListener).show()
+
+                }
+
+            }
+        }
 
     }
+    private fun deleteDevice(patient_id: String, android_id: String) {
+        if (AppUtils.isNetworkAvailable( App.getContext())) {
+            val post = ServiceConfig.createService(RetroOldApi::class.java)
+            val call = post.deletePatient(userPrefManager?.location,patient_id)
+            Log.i("TAG", "deleteDevice: "+call.request())
+            call.enqueue(object : Callback<ErrorMsg?> {
+                override fun onResponse(call: Call<ErrorMsg?>, response: Response<ErrorMsg?>) {
+                    if (response.isSuccessful) {
+                        val intent = Intent( this@PatientDetailsFragment,PatientDetailsFragment::class.java)
+                        startActivity(intent)
+                    } else if (response.code() == 404) {
+                        AppUtils.convertErrors(response.errorBody())
+                    } else {
+                        Toast.makeText(
+                            this@PatientDetailsFragment,
+                            response.message(),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<ErrorMsg?>, t: Throwable) {
+                    Log.i("TAG", "onFailure: " + t.localizedMessage)
+                    Toast.makeText( App.getContext(), t.localizedMessage, Toast.LENGTH_SHORT)
+                        .show()
+
+                }
+            })
+        } else {
+
+            Toast.makeText(
+                App.getContext(),
+                App.getContext().getString(R.string.no_interest_connection),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
 
 
     private fun hideProgressBar() {
@@ -190,7 +306,7 @@ class PatientDetailsFragment : AppCompatActivity() {
         //Preventing Click during loading
     }
 
-    fun verifyStoragePermissions(activity: Activity?) {
+    private fun verifyStoragePermissions(activity: Activity?) {
         // Check if we have write permission
         val permission = ActivityCompat.checkSelfPermission(
             activity!!,
@@ -200,8 +316,8 @@ class PatientDetailsFragment : AppCompatActivity() {
             // We don't have permission so prompt the user
             ActivityCompat.requestPermissions(
                 activity,
-             PERMISSIONS_STORAGE,
-              REQUEST_EXTERNAL_STORAGE
+                PERMISSIONS_STORAGE,
+                REQUEST_EXTERNAL_STORAGE
             )
         } else {
             if (writeDataAtOnce()) {
@@ -209,7 +325,7 @@ class PatientDetailsFragment : AppCompatActivity() {
                 val baseDir = Environment.getExternalStorageDirectory().absolutePath
                 val filePath = baseDir + File.separator + filename
                 Log.i(
-                   TAG,
+                    TAG,
                     "verifyStoragePermissions: $filePath"
                 )
                 val filelocation = File(filePath)
@@ -244,7 +360,7 @@ class PatientDetailsFragment : AppCompatActivity() {
                 if (f.exists() && !f.isDirectory) {
                     val result = Files.deleteIfExists(f.toPath())
                     Log.e(
-                       TAG,
+                        TAG,
                         "writeDataAtOnce: $result"
                     )
                     mFileWriter = FileWriter(filePath)
@@ -261,10 +377,10 @@ class PatientDetailsFragment : AppCompatActivity() {
                         productModel.data[i].patient_id,
                         productModel.data[i].name,
                         productModel.data[i].remarks,
-                        userPrefManager?.terminalName+ "\n"
+                        userPrefManager?.terminalName + "\n"
                     )
                     Log.i(
-                       TAG,
+                        TAG,
                         "writeDataAtOnce: " + data.size
                     )
                     writer.writeNext(data)

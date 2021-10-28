@@ -29,7 +29,6 @@
                 <TextView
                     android:id="@+id/user_id"
                     style="@style/table_row_design"
-                    android:visibility="gone"
                     android:text="@string/user_id" />
 
                 <View

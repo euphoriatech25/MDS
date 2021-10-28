@@ -311,7 +311,7 @@ class EditPatientDetails  : AppCompatActivity(){
             call.enqueue(object : Callback<RegisterResponse> {
                 override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
                     if (response.isSuccessful) {
-                        Toast.makeText(this@EditPatientDetails,"Successfully Updated",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@EditPatientDetails,getString(R.string.patient_updated),Toast.LENGTH_SHORT).show()
                         val mainActivity = Intent(
                             applicationContext,
                             PatientDetailsFragment::class.java

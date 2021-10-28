@@ -73,7 +73,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:text="@string/nurse_details"
-                            android:textSize="17sp" />
+                            android:textSize="15sp" />
 
                         <TextView
                             android:id="@+id/location"
@@ -89,6 +89,7 @@
                             android:id="@+id/cameraSwitch"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textSize="12sp"
                             android:text="@string/front_camera"
                             android:textOn="@string/back_camera"
                             android:textOff="@string/front_camera"/>

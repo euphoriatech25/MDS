@@ -7,6 +7,7 @@ import android.util.Size
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
@@ -44,6 +45,7 @@ class FaceVerificationOnline : AppCompatActivity(), GetDetails.CallbackOnline {
     private var userPrefManager: UserPrefManager? = null
 
     private lateinit var continue_btn : Button
+    private lateinit var progress : ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +66,7 @@ class FaceVerificationOnline : AppCompatActivity(), GetDetails.CallbackOnline {
         Log.i("TAG", "onCreate: "+a)
 
 
+        progress = findViewById(R.id.progress)
          continue_btn = findViewById(R.id.continue_btn)
         continue_btn.visibility= View.VISIBLE
         continue_btn.setOnClickListener {
@@ -73,7 +76,7 @@ class FaceVerificationOnline : AppCompatActivity(), GetDetails.CallbackOnline {
 
         }
 
-        GetDetails.getUserDetails(this,userFaceID)
+        GetDetails.getUserDetails(this,userFaceID,progress)
         patient_details = findViewById(R.id.patient_details)
         statusDisplay = findViewById(R.id.statusDisplay)
         status_face_verification = findViewById(R.id.status_face_verification)

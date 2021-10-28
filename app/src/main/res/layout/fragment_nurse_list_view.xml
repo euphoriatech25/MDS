@@ -79,15 +79,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center">
-
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textStyle="bold"
-                    android:textColor="@color/blue"
-                    android:text="@string/user_id"/>
+                android:layout_gravity="start"
+                android:orientation="horizontal">
 
                 <View
                     android:layout_width="0dp"
@@ -95,6 +88,17 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    android:id="@+id/user_id"
+                    style="@style/table_row_design"
+                    android:text="@string/user_id" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/user_name"
                     style="@style/table_row_design"
                     android:text="@string/user_name" />
 
@@ -104,8 +108,15 @@
                     android:layout_weight="1" />
 
                 <TextView
-                    style="@style/table_row_design"
-                    android:text="@string/photo" />
+                    android:id="@+id/user_photo"
+                    android:layout_width="50dp"
+                    android:layout_gravity="center"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    android:text="@string/photo"
+                    android:textColor="@color/blue"
+                    android:layout_height="wrap_content" />
 
                 <View
                     android:layout_width="0dp"
@@ -113,14 +124,17 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    android:id="@+id/user_remark"
                     style="@style/table_row_design"
-                    android:text="@string/remarks" />
-               <View
+                    android:text="@string/comment" />
+
+                <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_weight="1" />
 
                 <TextView
+                    android:id="@+id/terminal_name"
                     style="@style/table_row_design"
                     android:text="@string/terminal_name" />
 
@@ -132,12 +146,6 @@
                 <TextView
                     style="@style/table_row_design"
                     android:text="@string/operation" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-
             </LinearLayout>
 
             <LinearLayout

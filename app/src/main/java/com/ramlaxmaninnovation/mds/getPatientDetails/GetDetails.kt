@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import com.ramlaxmaninnovation.home.MainActivity
@@ -30,8 +31,8 @@ class GetDetails {
 
     companion object {
 
-        fun getUserDetails(context: Context, faceID: String) {
-
+        fun getUserDetails(context: Context, faceID: String,progress: ProgressBar) {
+            progress.visibility=View.VISIBLE
             var callbackOnline: CallbackOnline
             val data: GetDetailsModel.Data? = null
             val post = ServiceConfig.createService(
@@ -41,11 +42,13 @@ class GetDetails {
             userPrefManager= UserPrefManager(context)
             val call = post.fetchData(faceID,userPrefManager.location)
             call.enqueue(object : retrofit2.Callback<GetDetailsModel?> {
+
                 override fun onResponse(
                     call: Call<GetDetailsModel?>,
                     response: Response<GetDetailsModel?>
                 ) {
                     if (response.isSuccessful) {
+                        progress.visibility=View.GONE
                         var patient = response.body()
                         callbackOnline = context as CallbackOnline
                         if (patient != null) {
@@ -53,6 +56,7 @@ class GetDetails {
                         }
 
                     } else if (response.code() == 404) {
+                        progress.visibility=View.GONE
                         try {
                             val jObjError = JSONObject(response.errorBody()!!.string())
                             val subError = JSONObject(jObjError.getJSONObject("error").getString("message"))
@@ -67,6 +71,7 @@ class GetDetails {
                             Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
                         }
                     }else if(response.code()==500){
+                        progress.visibility=View.GONE
                         showDialog(context, context.getString(R.string.internal_server_error),false)
                     }else{
                         showDialog(context,response.message(),false)
@@ -74,7 +79,8 @@ class GetDetails {
                 }
 
                 override fun onFailure(call: Call<GetDetailsModel?>, t: Throwable) {
-                    Log.i("TAG", "onFailure" + t.localizedMessage)
+                    progress.visibility=View.GONE
+
                     showDialog(context,t.localizedMessage,false)
                     if (t is SocketTimeoutException) {
 //                        listener.connectionTimeOut()

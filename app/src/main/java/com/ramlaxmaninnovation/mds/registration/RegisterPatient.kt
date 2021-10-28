@@ -35,6 +35,7 @@ import com.ramlaxmaninnovation.mds.repository.AppRepository
 import com.ramlaxmaninnovation.mds.utils.AppUtils
 import com.ramlaxmaninnovation.mds.utils.AppUtils.ANDROID_ID
 import com.ramlaxmaninnovation.mds.utils.UserPrefManager
+import com.ramlaxmaninnovation.mds.verifydevice.CameraViewActivity
 import com.ramlaxmaninnovation.mds.views.ui.patientlist.PatientDetailsFragment
 import org.json.JSONObject
 import retrofit2.Call
@@ -318,7 +319,7 @@ class RegisterPatient : AppCompatActivity(){
                            getString(R.string.success_patient),
                             Toast.LENGTH_SHORT
                         ).show()
-                        val intent = Intent(this@RegisterPatient, PatientDetailsFragment::class.java).apply {
+                        val intent = Intent(this@RegisterPatient, CameraViewActivity::class.java).apply {
                         }
                         startActivity(intent)
                         finish()

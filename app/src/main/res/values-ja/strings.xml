@@ -113,6 +113,7 @@
     <string name="user_id">使用者ID</string>
 
 
+    <string name="patient_updated">正常に更新されました</string>
 
 
     <string name="network_failure">ネットワーク障害</string>
@@ -163,4 +164,9 @@
     <string name="invalid_qr">無効なQRコード</string>
     <string name="no_name">患者名と名前が見つかりません</string>
 
+    <string name="starting_ending_date">開始日/終了日を選択してください</string>
+    <string name="date_validation">終了日を開始日より前にすることはできません</string>
+    <string name="search_result">の検索結果：-</string>
+
+    <string name="no_user_login">最初にユーザーにログインしてください</string>
 </resources>

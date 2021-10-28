@@ -10,6 +10,7 @@
     <string name="please_select_your_location_to_verify_your_device">Please Select your location to validate your device</string>
 
     <string name="tap_to_click_picture">Tap to click picture</string>
+    <string name="patient_updated">Successfully Updated</string>
     <string name="patient_id">Patient ID</string>
     <string name="patient_name">Patient Name</string>
     <string name="online">Online</string>
@@ -145,6 +146,11 @@
     <string name="verifying_user">Verifying for User Login</string>
     <string name="invalid_qr">Invalid QR code</string>
     <string name="no_name">Patient Name and Surname not found</string>
+    <string name="starting_ending_date">Please select Starting/Ending Date</string>
+    <string name="date_validation">Ending date cannot be before Starting date</string>
+    <string name="search_result">Search Result for :-</string>
+
+  <string name="no_user_login">Please login User first</string>
 
 
 </resources>

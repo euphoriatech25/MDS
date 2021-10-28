@@ -70,7 +70,7 @@ class CameraViewActivity : AppCompatActivity() {
         val userPrefManager: UserPrefManager = UserPrefManager(this)
         if (userPrefManager.nurseDetails[1].equals("NOT FOUND")) {
             binding.previewView.visibility= View.GONE
-            Toast.makeText(this,"Please register User first",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,getString(R.string.no_user_login), Toast.LENGTH_SHORT).show()
         } else {
             binding.location.text = getString(R.string.location) + " :- " + userPrefManager.location
             binding.nurseDetails.text = getString(R.string.user_name) + " :- " + userPrefManager.nurseDetails[1]
@@ -189,12 +189,6 @@ class CameraViewActivity : AppCompatActivity() {
                             cameraProvider.unbindAll()
                             setFlashOffIcon()
                             if(barcodeList.isNotEmpty()){
-                                Snackbar.make(
-                                    this@CameraViewActivity, binding.clMain,
-                                    "${barcodeList[0].rawValue!!}", Snackbar.LENGTH_INDEFINITE
-                                )
-                                    .setAction(getString(R.string.verify_patient)) {
-
                                         splitted = barcodeList[0].rawValue!!.split("　").toTypedArray()
                                         val intent = Intent(
                                             this@CameraViewActivity,
@@ -203,7 +197,22 @@ class CameraViewActivity : AppCompatActivity() {
                                         intent.putExtra("faceID", splitted!![0])
                                         startActivity(intent)
                                         finish()
-                                    }     .show()
+
+//                                Snackbar.make(
+//                                    this@CameraViewActivity, binding.clMain,
+//                                    "${barcodeList[0].rawValue!!}", Snackbar.LENGTH_INDEFINITE
+//                                )
+//                                    .setAction(getString(R.string.verify_patient)) {
+//
+//                                        splitted = barcodeList[0].rawValue!!.split("　").toTypedArray()
+//                                        val intent = Intent(
+//                                            this@CameraViewActivity,
+//                                            FaceVerificationOnline::class.java
+//                                        )
+//                                        intent.putExtra("faceID", splitted!![0])
+//                                        startActivity(intent)
+//                                        finish()
+//                                    }     .show()
                             }else{
                                 Toast.makeText(this@CameraViewActivity,getString(R.string.invalid_qr),Toast.LENGTH_SHORT).show()
                             }

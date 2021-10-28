@@ -100,15 +100,21 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
+            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/select_date_layout">
 
             <TextView
+                android:id="@+id/search_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Search Result for date :-" />
+                android:layout_gravity="center" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
             <Button
                 android:id="@+id/getReprot"

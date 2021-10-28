@@ -5,6 +5,8 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.database.sqlite.SQLiteDatabase
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
@@ -33,6 +35,7 @@ import com.ramlaxmaninnovation.mds.viewModel.ViewModelProviderFactory
 import kotlinx.android.synthetic.main.fragment_transaction_list.*
 import java.io.File
 import java.io.FileWriter
+import java.lang.Exception
 import java.nio.file.Files
 import java.text.SimpleDateFormat
 import java.util.*
@@ -105,32 +108,40 @@ class TransactionListFragment : AppCompatActivity() {
         binding.searchBetweenTransaction.setOnClickListener {
             if(transactionModel.data.isNotEmpty())
             if (startingDate.isNotEmpty() && endingDate.isNotEmpty()) {
+
                 dataArrayList.clear()
                 val format: DateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
 
-                Log.i(TAG, "init: $startingDate $endingDate")
-
                 val datestart: Date = format.parse(startingDate)
                 val dateend: Date = format.parse(endingDate)
-             for(i in  transactionModel.data){
-                 var date:String=i.last_consumption_date.substring(0, i.last_consumption_date.length - 9)
-                 val total: Date = format.parse(date)
-                 if(total.after(datestart)&&total.before(dateend)){
-                     dataArrayList.add(i)
-                     Log.i(TAG, "init: "+i.last_consumption_date+" ")
-                 }
+                if(dateend.after(datestart)){
+                    binding.searchResult.text= getString(R.string.search_result)+"\n "+binding.startingDate.text +" to "+binding.endingDate.text
+                    binding.searchResult.setTextColor(Color.GREEN)
+                    for(i in  transactionModel.data){
+                        var date:String=i.last_consumption_date.substring(0, i.last_consumption_date.length - 9)
+                        val total: Date = format.parse(date)
+                        if(total.after(datestart)&&total.before(dateend)){
+                            dataArrayList.add(i)
+                            Log.i(TAG, "init: "+i.last_consumption_date+" ")
+                        }
 
-                 productAdapter.differ.submitList(dataArrayList)
-                 binding.transactionRecyclerView.adapter = productAdapter
-                 productAdapter.notifyDataSetChanged()
+                        productAdapter.differ.submitList(dataArrayList)
+                        binding.transactionRecyclerView.adapter = productAdapter
+                        productAdapter.notifyDataSetChanged()
 
-             }
+                    }
 
-
+                }else{
+                    Toast.makeText(
+                        this@TransactionListFragment,
+                      getString(R.string.date_validation),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             } else {
                 Toast.makeText(
                     this@TransactionListFragment,
-                    "Please select Starting/Ending Date",
+                    getString(R.string.starting_ending_date),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -292,77 +303,52 @@ class TransactionListFragment : AppCompatActivity() {
                 REQUEST_EXTERNAL_STORAGE
             )
         } else {
-            if (writeDataAtOnce()) {
-                val filename = "transaction_report.csv"
-                val baseDir = Environment.getExternalStorageDirectory().absolutePath
-                val filePath = baseDir + File.separator + filename
-                Log.i(
-                    TAG,
-                    "verifyStoragePermissions: $filePath"
+
+            // Check if we have write permission
+            val permission = ActivityCompat.checkSelfPermission(
+                activity!!,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+            if (permission != PackageManager.PERMISSION_GRANTED) {
+                // We don't have permission so prompt the user
+                ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
                 )
-                val filelocation = File(filePath)
-                val path = FileProvider.getUriForFile(
-                    this@TransactionListFragment,
-                    applicationContext.packageName.toString() + ".provider",
-                    filelocation
-                )
-                val emailIntent = Intent(Intent.ACTION_SEND)
-                emailIntent.type = "vnd.android.cursor.dir/email"
-                val to = arrayOf("")
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, to)
-                emailIntent.putExtra(Intent.EXTRA_STREAM, path)
-                emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject")
-                startActivity(Intent.createChooser(emailIntent, "Send email..."))
-            }
-        }
-    }
+            } else {
 
-    fun writeDataAtOnce(): Boolean {
-        val mFileWriter: FileWriter
-        val baseDir = Environment.getExternalStorageDirectory().absolutePath
-        val fileName = "patient_list_report.csv"
-        val filePath = baseDir + File.separator + fileName
-        val f = File(filePath)
-        val writer: CSVWriter
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            try {
-                // File exist
-                Log.i("TAG", "writeDataAtOnce:no issue ")
-                if (f.exists() && !f.isDirectory) {
-                    val result = Files.deleteIfExists(f.toPath())
-                    Log.e(
-                        TAG,
-                        "writeDataAtOnce: $result"
-                    )
-                    mFileWriter = FileWriter(filePath)
-                    writer = CSVWriter(mFileWriter)
 
-                } else {
-                    writer = CSVWriter(FileWriter(filePath))
-                }
-
-                var data: Array<String>? = null
-                for (i in transactionModel.data.indices) {
-                    data = arrayOf(
-                        transactionModel.data[i].toString(),
-                        transactionModel.data[i].patient_id,
-                        transactionModel.data[i].name,
-                        transactionModel.data[i].last_consumption_date,
-                        userPrefManager?.terminalName + "\n"
-                    )
+//                if (writeDataAtOnce()) {
+                    val filename = "transaction_report.csv"
+                    val baseDir = Environment.getExternalStorageDirectory().absolutePath
+                    val filePath = baseDir + File.separator + filename
                     Log.i(
                         TAG,
-                        "writeDataAtOnce: " + data.size
+                        "verifyStoragePermissions: $filePath"
                     )
-                    writer.writeNext(data)
-                }
-                writer.close()
-            } catch (e: Exception) {
-                Log.i("TAG", "writeDataAtOnce: " + e.localizedMessage)
+                    val filelocation = File(filePath)
+                    val path = FileProvider.getUriForFile(
+                        this@TransactionListFragment,
+                        applicationContext.packageName.toString() + ".provider",
+                        filelocation
+                    )
+                    val emailIntent = Intent(Intent.ACTION_SEND)
+                    emailIntent.type = "vnd.android.cursor.dir/email"
+                    val to = arrayOf("")
+                    emailIntent.putExtra(Intent.EXTRA_EMAIL, to)
+                    emailIntent.putExtra(Intent.EXTRA_STREAM, path)
+                    emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject")
+                    startActivity(Intent.createChooser(emailIntent, "Send email..."))
+//                }
+
             }
         }
-        return true
+
     }
+
+
+
 
 }

@@ -8,10 +8,12 @@
         <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/drawable/curve_bg.xml" value="0.3828125" />
         <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/drawable/edit_text.xml" value="0.3828125" />
         <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.3828125" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.23385416666666667" />
         <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/drawable/ic_baseline_error_24.xml" value="0.3828125" />
         <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.3828125" />
         <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/drawable/ic_flash_off_24.xml" value="0.3828125" />
         <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.3828125" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/drawable/rectangle.xml" value="0.3828125" />
         <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/drawable/text_style.xml" value="0.3828125" />
         <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/about_us.xml" value="0.36666666666666664" />
         <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/activity_face_verification.xml" value="0.36666666666666664" />
@@ -21,6 +23,7 @@
         <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/activity_register_patient.xml" value="0.36666666666666664" />
         <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/activity_register_user.xml" value="0.36666666666666664" />
         <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/activity_splash_screen.xml" value="0.36666666666666664" />
+        <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/activity_test.xml" value="0.36666666666666664" />
         <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/app_bar_main.xml" value="0.3456904541241891" />
         <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/camera_view.xml" value="0.36666666666666664" />
         <entry key="..\:/RamLaxman/AndroidStudioProjects/MDS/app/src/main/res/layout/check_verification.xml" value="0.36666666666666664" />

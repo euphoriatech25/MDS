@@ -36,6 +36,7 @@ class FaceVerificationActivity : AppCompatActivity() {
     private lateinit var userFaceID: String
     private lateinit var patient_details: TextView
     private lateinit var status_face_verification: TextView
+    private lateinit var show: TextView
     private lateinit var statusDisplay: CardView
     private lateinit var frameAnalyser: FrameAnalyser
     private lateinit var boundingBoxOverlay: BoundingBoxOverlay
@@ -57,6 +58,7 @@ class FaceVerificationActivity : AppCompatActivity() {
         Log.i("TAG", "onCreate: " + userFaceID)
         UserDatabaseUtils.getUsersFromFaceID(this, userFaceID, databaseCallback)
 
+        show = findViewById(R.id.show)
         patient_details = findViewById(R.id.patient_details)
         statusDisplay = findViewById(R.id.statusDisplay)
         status_face_verification = findViewById(R.id.status_face_verification)
@@ -108,7 +110,8 @@ class FaceVerificationActivity : AppCompatActivity() {
                 status_face_verification,
                 continue_verification,
                 "user",
-                photo
+                photo,
+                show
             )
             frameAnalyser.classificationThreshold = threshold
             startCameraPreview()

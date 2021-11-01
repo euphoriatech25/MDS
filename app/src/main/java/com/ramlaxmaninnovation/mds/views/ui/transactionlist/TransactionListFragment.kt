@@ -319,7 +319,7 @@ class TransactionListFragment : AppCompatActivity() {
             } else {
 
 
-//                if (writeDataAtOnce()) {
+                if (writeDataAtOnce()) {
                     val filename = "transaction_report.csv"
                     val baseDir = Environment.getExternalStorageDirectory().absolutePath
                     val filePath = baseDir + File.separator + filename
@@ -341,7 +341,7 @@ class TransactionListFragment : AppCompatActivity() {
                     emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                     emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject")
                     startActivity(Intent.createChooser(emailIntent, "Send email..."))
-//                }
+                }
 
             }
         }
@@ -349,6 +349,53 @@ class TransactionListFragment : AppCompatActivity() {
     }
 
 
+
+    fun writeDataAtOnce(): Boolean {
+        val mFileWriter: FileWriter
+        val baseDir = Environment.getExternalStorageDirectory().absolutePath
+        val fileName = "patient_list_report.csv"
+        val filePath = baseDir + File.separator + fileName
+        val f = File(filePath)
+        val writer: CSVWriter
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            try {
+                // File exist
+                Log.i("TAG", "writeDataAtOnce:no issue ")
+                if (f.exists() && !f.isDirectory) {
+                    val result = Files.deleteIfExists(f.toPath())
+                    Log.e(
+                        TAG,
+                        "writeDataAtOnce: $result"
+                    )
+                    mFileWriter = FileWriter(filePath)
+                    writer = CSVWriter(mFileWriter)
+
+                } else {
+                    writer = CSVWriter(FileWriter(filePath))
+                }
+
+                var data: Array<String>? = null
+                for (i in transactionModel.data.indices) {
+                    data = arrayOf(
+                        transactionModel.data[i].toString(),
+                        transactionModel.data[i].patient_id,
+                        transactionModel.data[i].name,
+                        transactionModel.data[i].last_consumption_date,
+                        userPrefManager?.terminalName + "\n"
+                    )
+                    Log.i(
+                        TAG,
+                        "writeDataAtOnce: " + data.size
+                    )
+                    writer.writeNext(data)
+                }
+                writer.close()
+            } catch (e: Exception) {
+                Log.i("TAG", "writeDataAtOnce: " + e.localizedMessage)
+            }
+        }
+        return true
+    }
 
 
 }

@@ -42,6 +42,7 @@
         <activity
             android:name=".registration.RegisterPatient"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="com.ramlaxmaninnovation.home.MainActivity"
             android:exported="true"
@@ -60,6 +61,12 @@
             android:name=".verifydevice.CameraViewActivity"
             android:noHistory="true"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ramlaxmaninnovation.home.pdfapp.MainActivity"
+            android:exported="true"
+            android:noHistory="true"
+            android:label="@string/system_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".registration.RegisterCamera"
@@ -124,7 +131,7 @@
             android:grantUriPermissions="true" >
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths" />
+                android:resource="@xml/filepaths" />
         </provider>
     </application>
 

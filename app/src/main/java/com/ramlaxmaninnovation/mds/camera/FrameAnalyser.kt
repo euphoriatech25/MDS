@@ -51,9 +51,7 @@ import kotlin.collections.ArrayList
 import kotlin.math.pow
 import kotlin.math.sqrt
 import android.app.Activity
-
-
-
+import android.view.View
 
 
 class FrameAnalyser(
@@ -69,6 +67,7 @@ class FrameAnalyser(
     private var continue_verification: TextView,
     private var source: String,
     private var photo: String,
+    private var show: TextView,
 ) : ImageAnalysis.Analyzer {
     private val realTimeOpts = FaceDetectorOptions.Builder()
         .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_FAST)
@@ -146,13 +145,15 @@ class FrameAnalyser(
                         if (result >= 0 && scores.average().toFloat() <= classificationThreshold) {
 
                             if(source=="verify"){
+                                show.visibility= View.GONE
                                 patient_details.text =
-                                    context.getString(R.string.VERIFYING_FOR) + userName
+                                    context.getString(R.string.VERIFYING_FOR)+"\n" + userName
                                 continue_verification.text =
                                     context.getString(R.string.patient_id) + " " + idFace
                             }else{
+                                show.visibility= View.GONE
                                 patient_details.text =
-                                   context.getString(R.string.verifying_user)+" :-" +userName
+                                   context.getString(R.string.verifying_user)+" :-\n" +userName
                                 continue_verification.text =
                                     context.getString(R.string.user_id) + "  " + idFace
                             }

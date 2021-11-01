@@ -20,7 +20,7 @@
     <string name="set_threshold">Set Threshold :-</string>
     <string name="set_language">Set Language :-</string>
     <string name="device_using_status">System Usage Mode:- </string>
-    <string name="medicine_dispense_system">   Face Recognition Audit System</string>
+    <string name="medicine_dispense_system">   iCchy</string>
     <string name="setting">Setting</string>
     <string name="powered_by_seiko_electric">Powered by </string>
     <string name="device_location">Device Name</string>
@@ -151,6 +151,11 @@
     <string name="search_result">Search Result for :-</string>
 
   <string name="no_user_login">Please login User first</string>
+    <string name="user_login">User\nLogin</string>
+    <string name="login_user">Login User</string>
+    <string name="user_nlogout">User\nLogout</string>
+    <string name="face_show">Please show the patient\'s face</string>
+    <string name="please_read_the_qr_message">Please read the QR message</string>
 
 
 </resources>

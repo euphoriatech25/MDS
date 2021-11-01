@@ -12,11 +12,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             app:cardCornerRadius="4dp"
+            android:layout_gravity="center"
             android:layout_height="wrap_content">
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text"
                 android:layout_gravity="center">
@@ -28,6 +29,7 @@
 
                 <TextView
                     android:id="@+id/user_id"
+                    android:visibility="gone"
                     style="@style/table_row_design"
                     android:text="@string/user_id" />
 
@@ -58,6 +60,7 @@
 
                 <TextView
                     android:id="@+id/user_remark"
+                    android:visibility="gone"
                     style="@style/table_row_design"
                     android:text="Terminal " />
                 <View
@@ -81,6 +84,18 @@
                     android:layout_gravity="center"
                     android:layout_marginEnd="10dp">
 
+                    <Button
+                        android:id="@+id/login_nurse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/login_user"
+                        android:layout_margin="10dp"
+
+                        android:layout_marginStart="5dp"
+                        android:background="@color/blue"
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        android:src="@drawable/ic_baseline_delete_24" />
 
                     <ImageButton
                         android:id="@+id/delete_nurse"
@@ -88,17 +103,6 @@
                         android:layout_height="30dp"
                         android:layout_gravity="center"
                         android:background="@color/colorAccent"
-                        android:src="@drawable/ic_baseline_delete_24" />
-
-                    <Button
-                        android:id="@+id/login_nurse"
-                        android:layout_width="100dp"
-                        android:layout_height="30dp"
-                        android:text="Login User"
-                        android:layout_marginLeft="5dp"
-                        android:background="@color/blue"
-                        android:textColor="@color/white"
-                        android:textSize="12sp"
                         android:src="@drawable/ic_baseline_delete_24" />
 
                 </LinearLayout>

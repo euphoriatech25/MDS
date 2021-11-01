@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Base64
 import android.view.View
 import android.view.WindowManager
+import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -18,6 +19,7 @@ import com.ramlaxmaninnovation.mds.verifydevice.CameraViewActivity
 import com.ramlaxmaninnovation.mds.views.ui.nurselist.NurseListViewFragment
 import com.ramlaxmaninnovation.mds.views.ui.patientlist.PatientDetailsFragment
 import com.ramlaxmaninnovation.mds.views.ui.transactionlist.TransactionListFragment
+import kotlinx.android.synthetic.main.content_main.view.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,7 +32,29 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         userPrefManager= UserPrefManager(this)
 
-        setSupportActionBar(binding.appBarMain.toolbar)
+
+        if(userPrefManager!!.cameraView.equals("back")){
+           binding.appBarMain.clMain.cameraSwitch.isChecked=true
+           binding.appBarMain.clMain.cameraSwitch.text =binding.appBarMain.clMain.cameraSwitch.textOn
+
+        }else{
+           binding.appBarMain.clMain.cameraSwitch.isChecked=false
+           binding.appBarMain.clMain.cameraSwitch.text =binding.appBarMain.clMain.cameraSwitch.textOff
+        }
+
+       binding.appBarMain.clMain.cameraSwitch.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+               binding.appBarMain.clMain.cameraSwitch.text =binding.appBarMain.clMain.cameraSwitch.textOn
+               userPrefManager!!.cameraView = "back"
+
+            } else {
+               binding.appBarMain.clMain.cameraSwitch.text =binding.appBarMain.clMain.cameraSwitch.textOff
+               userPrefManager!!.cameraView = "front"
+
+            }
+        })
+
+//        setSupportActionBar(binding.appBarMain.toolbar)
         changeStatusBarColor()
 
     }

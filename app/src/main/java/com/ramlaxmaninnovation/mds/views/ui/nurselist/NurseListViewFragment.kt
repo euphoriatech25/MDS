@@ -106,7 +106,7 @@ class NurseListViewFragment : AppCompatActivity() {
                     user_id.text=i.faceID
                     user_name.text = i.personName
                     user_id.text = i.id.toString()
-                    user_remarks.text = i.patientRemarks
+//                    user_remarks.text = i.patientRemarks
                     terminal_used.text = i.terminalName
 
                     val decodedString: ByteArray = Base64.decode(i.photostring, Base64.DEFAULT)

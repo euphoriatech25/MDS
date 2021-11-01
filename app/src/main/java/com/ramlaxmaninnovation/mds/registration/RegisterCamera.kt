@@ -34,6 +34,7 @@ import com.ramlaxmaninnovation.mds.getPatientDetails.FaceVerificationOnline
 import com.ramlaxmaninnovation.mds.getPatientDetails.GetDetailsModel
 import com.ramlaxmaninnovation.mds.utils.AppUtils
 import com.ramlaxmaninnovation.mds.utils.UserPrefManager
+import com.ramlaxmaninnovation.mds.views.ui.patientlist.PatientDetailsFragment
 
 class RegisterCamera  : AppCompatActivity(), CheckAvailability.CallbackAvailability {
 
@@ -59,19 +60,20 @@ class RegisterCamera  : AppCompatActivity(), CheckAvailability.CallbackAvailabil
         super.onCreate(savedInstanceState)
         binding = CameraViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.openMenu.visibility= View.GONE
-//        binding.openMenu.setOnClickListener {
-//            val intent = Intent(
-//                this@RegisterCamera,
-//                MainActivity::class.java
-//            )
-//            startActivity(intent)
-//        }
+//        binding.openMenu.visibility= View.GONE
+        binding.openMenu.setOnClickListener {
+            val intent = Intent(
+                this@RegisterCamera,
+                PatientDetailsFragment::class.java
+            )
+            startActivity(intent)
+        }
 
 
         val userPrefManager: UserPrefManager = UserPrefManager(this)
         binding.location.setText(getString(R.string.location)+" :- "+userPrefManager.location)
         binding.nurseDetails.setText(getString(R.string.user_name)+" :- "+userPrefManager.nurseDetails[1])
+        binding.logoutNurse.visibility=View.GONE
         val decodedString: ByteArray = Base64.decode((userPrefManager.nurseDetails[2]), Base64.DEFAULT)
         val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
         Glide.with(this)
@@ -209,6 +211,17 @@ class RegisterCamera  : AppCompatActivity(), CheckAvailability.CallbackAvailabil
     override fun onResume() {
         super.onResume()
         setFlashOffIcon()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(
+            this@RegisterCamera,
+            PatientDetailsFragment::class.java
+        )
+
+        startActivity(intent)
+        finish()
     }
 
     private fun isCameraPermissionGranted(): Boolean {

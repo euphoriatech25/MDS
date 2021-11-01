@@ -9,7 +9,7 @@
 
     <string name="package_name">com.ramlaxmaninnovation.mds</string>
     <string name="tap_to_click_picture">タップして画像をクリック</string>
-    <string name="patient_id">患者ID :-</string>
+    <string name="patient_id">患者ID</string>
     <string name="patient_name">患者名</string>
     <string name="online">オンライン</string>
     <string name="offline">オフライン</string>
@@ -18,7 +18,7 @@
     <string name="set_threshold">しきい値の設定 ：-</string>
     <string name="set_language">言語の設定 ：-</string>
     <string name="device_using_status">システム使用モード :-</string>
-    <string name="medicine_dispense_system">顔認識監査システム</string>
+    <string name="medicine_dispense_system">iCchy</string>
     <string name="setting">設定</string>
     <string name="powered_by_seiko_electric">開発社</string>
     <string name="device_location">デバイス名</string>
@@ -125,11 +125,11 @@
     <string name="menu_nurse_list">看護師の詳細</string>
     <string name="successfully_deleted">正常に削除されました</string>
     <string name="verify_patient_details">V患者の詳細を確認する</string>
-    <string name="register_user">ユーザーの登録</string>
-    <string name="patient_list_view">患者リストビュー</string>
-    <string name="user_list_view">ユーザーリストビュー</string>
-    <string name="transaction_list_view">トランザクションリストビュー</string>
-    <string name="scan_setting">スキャン設定</string>
+    <string name="register_user">使用者 登録</string>
+    <string name="patient_list_view">患者一覧</string>
+    <string name="user_list_view">使用者一覧</string>
+    <string name="transaction_list_view">使用履歴</string>
+    <string name="scan_setting">端末設定</string>
         <string name="back_to_scanner">スキャナーに戻る</string>
     <string name="menu">メニュー</string>
     <string name="location">位置</string>
@@ -169,4 +169,9 @@
     <string name="search_result">の検索結果：-</string>
 
     <string name="no_user_login">最初にユーザーにログインしてください</string>
+    <string name="user_login">使用者 ログインする</string>
+    <string name="login_user">ログインユーザー</string>
+    <string name="user_nlogout">ユーザー \nログアウト</string>
+    <string name="face_show">患者の顔を映してください</string>
+    <string name="please_read_the_qr_message">QRを読み込んでくださいのメッセージ</string>
 </resources>

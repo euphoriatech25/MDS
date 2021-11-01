@@ -28,6 +28,7 @@
         app:layout_constraintVertical_bias="0.407" />
 
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center|bottom"
@@ -60,6 +61,7 @@
             android:id="@+id/versionName"
             android:textStyle="bold"
             android:textSize="10sp"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white" />

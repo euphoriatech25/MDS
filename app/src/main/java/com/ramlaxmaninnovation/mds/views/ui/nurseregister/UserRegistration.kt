@@ -150,7 +150,7 @@ class UserRegistration : AppCompatActivity() {
                 userPrefManager?.let { it1 ->
                     UserDatabaseUtils.insertUser(
                         this,
-                        patient_id.text.toString(),
+                        patient_name.text.toString(),
                         patient_name.text.toString(),
                         registerUserEmbedding,
                         patient_remark.text.toString(),

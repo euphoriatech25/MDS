@@ -196,7 +196,7 @@ class PatientDetailsFragment :  AppCompatActivity() {
                 var edit_patient: ImageButton = itemView.findViewById(R.id.edit_patient)
                 var delete_patient: ImageButton = itemView.findViewById(R.id.delete_patient)
 
-                patient_no.text = i.toString()
+                patient_no.text = (i+1).toString()
                 patient_id.text = data[i].patient_id
                 patient_name.text = data[i].name
                 patient_comment.text=data[i].remarks

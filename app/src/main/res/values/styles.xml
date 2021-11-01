@@ -57,7 +57,7 @@
 
 
     <style name="table_row_design" parent="parent">
-        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_width">80dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">2dp</item>
         <item name="android:textColor">@color/blue</item>

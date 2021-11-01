@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Base64
 import android.util.DisplayMetrics
@@ -30,9 +31,12 @@ import com.ramlaxmaninnovation.home.getAspectRatio
 import com.ramlaxmaninnovation.home.showToast
 import com.ramlaxmaninnovation.mds.R
 import com.ramlaxmaninnovation.mds.databinding.CameraViewBinding
+import com.ramlaxmaninnovation.mds.getPatientDetails.CheckAvailability
 import com.ramlaxmaninnovation.mds.getPatientDetails.FaceVerificationOnline
+import com.ramlaxmaninnovation.mds.getPatientDetails.GetDetailsModel
 import com.ramlaxmaninnovation.mds.utils.AppUtils
 import com.ramlaxmaninnovation.mds.utils.UserPrefManager
+import com.ramlaxmaninnovation.mds.views.ui.nurselist.NurseListViewFragment
 
 class CameraViewActivity : AppCompatActivity() {
 
@@ -70,10 +74,14 @@ class CameraViewActivity : AppCompatActivity() {
         val userPrefManager: UserPrefManager = UserPrefManager(this)
         if (userPrefManager.nurseDetails[1].equals("NOT FOUND")) {
             binding.previewView.visibility= View.GONE
+            binding.loginNurse.visibility=View.VISIBLE
+
             Toast.makeText(this,getString(R.string.no_user_login), Toast.LENGTH_SHORT).show()
         } else {
-            binding.location.text = getString(R.string.location) + " :- " + userPrefManager.location
-            binding.nurseDetails.text = getString(R.string.user_name) + " :- " + userPrefManager.nurseDetails[1]
+            binding.logoutNurse.visibility=View.VISIBLE
+            binding.location.text =userPrefManager.location
+            binding.location.setTextColor(Color.WHITE)
+            binding.nurseDetails.text =userPrefManager.nurseDetails[1]
             val decodedString: ByteArray =
                 Base64.decode((userPrefManager.nurseDetails[2]), Base64.DEFAULT)
             val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
@@ -82,28 +90,31 @@ class CameraViewActivity : AppCompatActivity() {
                 .apply(RequestOptions().circleCrop())
                 .into(binding.nurseImage)
 
-
-        }
-        if( userPrefManager.cameraView.equals("back")){
-            binding.cameraSwitch.isChecked=true
-            binding.cameraSwitch.text = binding.cameraSwitch.textOn
-
-        }else{
-            binding.cameraSwitch.isChecked=false
-            binding.cameraSwitch.text = binding.cameraSwitch.textOff
         }
 
-        binding.cameraSwitch.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-                binding.cameraSwitch.text = binding.cameraSwitch.textOn
-                userPrefManager.cameraView = "back"
 
-            } else {
-                binding.cameraSwitch.text = binding.cameraSwitch.textOff
-                userPrefManager.cameraView = "front"
+        binding.logoutNurse.setOnClickListener {
+            userPrefManager.setNurseDetails("NOT FOUND","NOT FOUND","NOT FOUND")
+            val intent = Intent(
+                this@CameraViewActivity,
+                CameraViewActivity::class.java
+            )
+            startActivity(intent)
+            finish()
+        }
+        binding.loginNurse.setOnClickListener {
 
-            }
-        })
+            val intent = Intent(
+                this@CameraViewActivity,
+                NurseListViewFragment::class.java
+            )
+            startActivity(intent)
+
+        }
+
+
+
+
 
         changeStatusBarColor()
         if (isCameraPermissionGranted()) {
@@ -170,6 +181,7 @@ class CameraViewActivity : AppCompatActivity() {
             )
         } catch (e: NullPointerException) {
             e.printStackTrace()
+            Log.i(TAG, "bindPreview: "+e.printStackTrace())
             startCamera()
         }
 
@@ -183,43 +195,32 @@ class CameraViewActivity : AppCompatActivity() {
             val inputImage = InputImage.fromMediaImage(image, imageProxy.imageInfo.rotationDegrees)
             barcodeScanner.process(inputImage)
                 .addOnSuccessListener { barcodeList ->
-                    if (!barcodeList.isNullOrEmpty()) {
-                        if (!barcodeList[0].rawValue.isNullOrEmpty()) {
-                            Log.e(TAG, "processImageProxy: " + barcodeList[0].rawValue)
-                            cameraProvider.unbindAll()
-                            setFlashOffIcon()
-                            if(barcodeList.isNotEmpty()){
-                                        splitted = barcodeList[0].rawValue!!.split("　").toTypedArray()
-                                        val intent = Intent(
-                                            this@CameraViewActivity,
-                                            FaceVerificationOnline::class.java
-                                        )
-                                        intent.putExtra("faceID", splitted!![0])
-                                        startActivity(intent)
-                                        finish()
 
-//                                Snackbar.make(
-//                                    this@CameraViewActivity, binding.clMain,
-//                                    "${barcodeList[0].rawValue!!}", Snackbar.LENGTH_INDEFINITE
-//                                )
-//                                    .setAction(getString(R.string.verify_patient)) {
-//
-//                                        splitted = barcodeList[0].rawValue!!.split("　").toTypedArray()
-//                                        val intent = Intent(
-//                                            this@CameraViewActivity,
-//                                            FaceVerificationOnline::class.java
-//                                        )
-//                                        intent.putExtra("faceID", splitted!![0])
-//                                        startActivity(intent)
-//                                        finish()
-//                                    }     .show()
-                            }else{
-                                Toast.makeText(this@CameraViewActivity,getString(R.string.invalid_qr),Toast.LENGTH_SHORT).show()
+                        if (!barcodeList.isNullOrEmpty()) {
+                            Log.e(TAG, "processImageProxy: cccccccccccccccc" + barcodeList[0].rawValue)
+
+                            if (!barcodeList[0].rawValue.isNullOrEmpty()){
+                                Log.e(TAG, "processImageProxy: " + barcodeList[0].rawValue)
+                                cameraProvider.unbindAll()
+                                setFlashOffIcon()
+
+                                if(barcodeList.isNotEmpty()){
+                                    splitted = barcodeList[0].rawValue!!.split("　").toTypedArray()
+                                    val intent = Intent(
+                                        this@CameraViewActivity,
+                                        FaceVerificationOnline::class.java
+                                    )
+                                    intent.putExtra("faceID", splitted!![0])
+                                    startActivity(intent)
+                                    finish()
+
+                                }else{
+                                    Toast.makeText(this@CameraViewActivity,getString(R.string.invalid_qr),Toast.LENGTH_SHORT).show()
+                                }
+
                             }
-
-
                         }
-                    }
+
                 }.addOnFailureListener {
                     image.close()
                     imageProxy.close()
@@ -296,5 +297,7 @@ class CameraViewActivity : AppCompatActivity() {
             )
         )
     }
+
+
 
 }

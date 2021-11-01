@@ -13,20 +13,29 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" >
 
-    <ImageView
-        android:id="@+id/imgFlashLight"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_gravity="bottom|center"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/white"
+        <ImageView
+            android:id="@+id/imgFlashLight"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom|center"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/white"
+            app:srcCompat="@drawable/ic_flash_off_24" />
+    </androidx.camera.view.PreviewView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/please_read_the_qr_message"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_flash_off_24" />
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -57,6 +66,7 @@
                     <ImageView
                         android:id="@+id/nurse_image"
                         android:layout_width="50dp"
+                        android:layout_margin="5dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:src="@drawable/nurse" />
@@ -77,37 +87,59 @@
 
                         <TextView
                             android:id="@+id/location"
-                            android:layout_width="wrap_content"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left"
-                            android:text="@string/verify_patient_details"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
-
-                        <androidx.appcompat.widget.SwitchCompat
-                            android:id="@+id/cameraSwitch"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="12sp"
-                            android:text="@string/front_camera"
-                            android:textOn="@string/back_camera"
-                            android:textOff="@string/front_camera"/>
                     </LinearLayout>
 
                 </LinearLayout>
-
-
             </LinearLayout>
 
-            <Button
-                android:id="@+id/openMenu"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginEnd="10dp"
-                android:background="@color/teal_200"
-                android:text="@string/menu" />
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/openMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:textSize="12sp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_arrow_back_24"
+                    android:background="@color/teal_200"
+                    android:text="@string/menu"
+                    />
+                <Button
+                    android:id="@+id/logoutNurse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/teal_200"
+                    android:text="@string/user_nlogout" />
+
+                <Button
+                    android:id="@+id/loginNurse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="10dp"
+                    android:visibility="gone"
+                    android:background="@color/teal_200"
+                    android:text="@string/user_login" />
+
+            </LinearLayout>
+
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>

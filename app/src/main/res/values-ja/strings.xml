@@ -173,5 +173,7 @@
     <string name="login_user">ログインユーザー</string>
     <string name="user_nlogout">ユーザー \nログアウト</string>
     <string name="face_show">患者の顔を映してください</string>
-    <string name="please_read_the_qr_message">QRを読み込んでくださいのメッセージ</string>
+    <string name="face_show_user">顔を映してください</string>
+    <string name="please_read_the_qr_message">QRを読み込んでください</string>
+    <string name="device_name">デバイス名を追加してください</string>
 </resources>

@@ -155,7 +155,9 @@
     <string name="login_user">Login User</string>
     <string name="user_nlogout">User\nLogout</string>
     <string name="face_show">Please show the patient\'s face</string>
-    <string name="please_read_the_qr_message">Please read the QR message</string>
+    <string name="face_show_user">顔を映してください</string>
+    <string name="please_read_the_qr_message">Please read the QR</string>
+    <string name="device_name">Please add device name</string>
 
 
 </resources>

@@ -7,16 +7,18 @@ import android.content.Intent;
 
 //import com.ramlaxmaninnovation.mds.MainActivity;
 
+import com.ramlaxmaninnovation.mds.splash.SplashScreen;
+
 import java.util.List;
 
 public class AutoStartReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-//
-//        Intent i = new Intent(context, MainActivity.class);  //MyActivity can be anything start on bootup...
-//        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        context.startActivity(i);
+
+        Intent i = new Intent(context, SplashScreen.class);  //MyActivity can be anything start on bootup...
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(i);
 
 
 //        Intent mStartActivity = new Intent(context, MainActivity.class);

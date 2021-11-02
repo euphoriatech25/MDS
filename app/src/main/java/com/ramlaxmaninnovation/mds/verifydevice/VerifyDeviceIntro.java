@@ -13,12 +13,11 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -33,7 +32,6 @@ import com.ramlaxmaninnovation.mds.network.ServiceConfig;
 import com.ramlaxmaninnovation.mds.utils.AppUtils;
 import com.ramlaxmaninnovation.mds.utils.ErrorMsg;
 import com.ramlaxmaninnovation.mds.utils.UserPrefManager;
-import com.ramlaxmaninnovation.mds.views.ui.transactionlist.Data;
 
 import org.json.JSONObject;
 
@@ -57,7 +55,8 @@ public class VerifyDeviceIntro extends AppCompatActivity {
     SharedPreferences.Editor shareEditor;
     ProgressDialog pd;
     UserPrefManager userPrefManager;
-   String selectedLocation;
+    String selectedLocation;
+    EditText device_name;
 
     @SuppressLint("HardwareIds")
     public static String ANDROID_ID(Context context) {
@@ -73,6 +72,7 @@ public class VerifyDeviceIntro extends AppCompatActivity {
         verify_device = findViewById(R.id.register);
         dialog = new Dialog(this);
         languageSwitch = findViewById(R.id.languageSwitch);
+        device_name = findViewById(R.id.device_name);
 
         pd = new ProgressDialog(VerifyDeviceIntro.this);
         userPrefManager = new UserPrefManager(this);
@@ -91,8 +91,6 @@ public class VerifyDeviceIntro extends AppCompatActivity {
                 }
             }
         });
-
-
 
 
         if (restorePrefData()) {
@@ -129,13 +127,14 @@ public class VerifyDeviceIntro extends AppCompatActivity {
                 public void onResponse(Call<GetLocationList> call, Response<GetLocationList> response) {
                     if (response.isSuccessful()) {
                         GetLocationList getLocationList = response.body();
-                       List<String>location=new ArrayList<>();
+                        List<String> location = new ArrayList<>();
                         if (getLocationList.getData().size() != 0) {
                             location.addAll(getLocationList.getData());
                             getLanguageChange(location);
                         }
                     }
                 }
+
                 @Override
                 public void onFailure(Call<GetLocationList> call, Throwable t) {
                     Toast.makeText(VerifyDeviceIntro.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
@@ -151,58 +150,64 @@ public class VerifyDeviceIntro extends AppCompatActivity {
         Spinner spinCountry;
         spinCountry = (Spinner) findViewById(R.id.spinLocation);//fetch the spinner from layout file
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.languages,getLocation);
+                R.layout.languages, getLocation);
         adapter.setDropDownViewResource(R.layout.language);
         spinCountry.setAdapter(adapter);
         spinCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int position, long id) {
-                selectedLocation=adapter.getItem(position).toString();
+                selectedLocation = adapter.getItem(position).toString();
 
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
-                selectedLocation=adapter.getItem(0).toString();
+                selectedLocation = adapter.getItem(0).toString();
             }
         });
     }
 
     private void registerDevice(String location, String android_id) {
+        String device_name_string = device_name.getText().toString();
 
-        if (AppUtils.isNetworkAvailable(this)) {
-            RetroOldApi post = ServiceConfig.createService(RetroOldApi.class);
-            Call<ResponseBody> call = post.addDevice(android_id, location);
-            call.enqueue(new Callback<ResponseBody>() {
-                @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    pd.dismiss();
+        if (device_name_string.length() > 0) {
+            if (AppUtils.isNetworkAvailable(this)) {
+                RetroOldApi post = ServiceConfig.createService(RetroOldApi.class);
+                Call<ResponseBody> call = post.addDevice(android_id, location, device_name_string);
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        pd.dismiss();
 
-                    if (response.isSuccessful()) {
-                        userPrefManager.setLocation(location);
-                        savePrefsData();
-                        startActivity(new Intent(VerifyDeviceIntro.this, CameraViewActivity.class));
-                        finish();
-                    } else if (response.code() == 404) {
-                        AppUtils.convertErrors(response.errorBody());
-                    } else {
-                        Toast.makeText(VerifyDeviceIntro.this, response.message(), Toast.LENGTH_SHORT).show();
+                        if (response.isSuccessful()) {
+                            userPrefManager.setLocation(location);
+                            savePrefsData();
+                            startActivity(new Intent(VerifyDeviceIntro.this, CameraViewActivity.class));
+                            finish();
+                        } else if (response.code() == 404) {
+                            AppUtils.convertErrors(response.errorBody());
+                        } else {
+                            Toast.makeText(VerifyDeviceIntro.this, response.message(), Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
 
-                @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Log.i("TAG", "onFailure: " + t.getLocalizedMessage());
-                    Toast.makeText(VerifyDeviceIntro.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                    pd.dismiss();
-                }
-            });
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.i("TAG", "onFailure: " + t.getLocalizedMessage());
+                        Toast.makeText(VerifyDeviceIntro.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        pd.dismiss();
+                    }
+                });
+            } else {
+                pd.dismiss();
+                Toast.makeText(VerifyDeviceIntro.this, getString(R.string.no_interest_connection), Toast.LENGTH_SHORT).show();
+            }
         } else {
-            pd.dismiss();
-            Toast.makeText(VerifyDeviceIntro.this, getString(R.string.no_interest_connection), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.device_name), Toast.LENGTH_SHORT).show();
         }
+
     }
 
 

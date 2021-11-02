@@ -34,6 +34,7 @@ class FaceVerificationOnline : AppCompatActivity(), GetDetails.CallbackOnline {
     private lateinit var previewView: PreviewView
     private lateinit var userFaceID: String
     private lateinit var patient_details: TextView
+    private lateinit var back_home: TextView
     private lateinit var continue_verification: TextView
     private lateinit var status_face_verification: TextView
     private lateinit var show: TextView
@@ -59,9 +60,15 @@ class FaceVerificationOnline : AppCompatActivity(), GetDetails.CallbackOnline {
 
 
         progress = findViewById(R.id.progress)
+        back_home = findViewById(R.id.back_home)
         continue_btn = findViewById(R.id.continue_btn)
-        continue_btn.visibility = View.VISIBLE
         continue_btn.setOnClickListener {
+            val intent = Intent(this, CameraViewActivity::class.java).apply {
+            }
+            startActivity(intent)
+        }
+
+        back_home.setOnClickListener {
             val intent = Intent(this, CameraViewActivity::class.java).apply {
             }
             startActivity(intent)
@@ -71,6 +78,7 @@ class FaceVerificationOnline : AppCompatActivity(), GetDetails.CallbackOnline {
         patient_details = findViewById(R.id.patient_details)
         statusDisplay = findViewById(R.id.statusDisplay)
         show = findViewById(R.id.show)
+        show.setText(R.string.face_show)
         status_face_verification = findViewById(R.id.status_face_verification)
 
         continue_verification = findViewById(R.id.continue_verification)
@@ -170,7 +178,8 @@ class FaceVerificationOnline : AppCompatActivity(), GetDetails.CallbackOnline {
                 continue_verification,
                 "verify",
                 "",
-                show
+                show,
+                continue_btn
             )
             frameAnalyser.classificationThreshold = threshold
             startCameraPreview()

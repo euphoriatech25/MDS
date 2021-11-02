@@ -3,6 +3,7 @@ package com.ramlaxmaninnovation.home
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Base64
 import android.view.View
 import android.view.WindowManager
@@ -32,7 +33,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         userPrefManager= UserPrefManager(this)
 
+        binding.appBarMain.clMain.ic_setting.setOnClickListener {
+            startActivityForResult(Intent(Settings.ACTION_SETTINGS), 0)
 
+        }
         if(userPrefManager!!.cameraView.equals("back")){
            binding.appBarMain.clMain.cameraSwitch.isChecked=true
            binding.appBarMain.clMain.cameraSwitch.text =binding.appBarMain.clMain.cameraSwitch.textOn

@@ -2,6 +2,7 @@ package com.ramlaxmaninnovation.mds.camera
 
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -14,6 +15,7 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.provider.Settings.Secure
 import android.util.Log
+import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
@@ -50,8 +52,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.pow
 import kotlin.math.sqrt
-import android.app.Activity
-import android.view.View
 
 
 class FrameAnalyser(
@@ -68,6 +68,7 @@ class FrameAnalyser(
     private var source: String,
     private var photo: String,
     private var show: TextView,
+    private var continue_btn: Button,
 ) : ImageAnalysis.Analyzer {
     private val realTimeOpts = FaceDetectorOptions.Builder()
         .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_FAST)
@@ -144,18 +145,21 @@ class FrameAnalyser(
                     if (!scores.average().toFloat().toString().equals("NaN")) {
                         if (result >= 0 && scores.average().toFloat() <= classificationThreshold) {
 
-                            if(source=="verify"){
-                                show.visibility= View.GONE
+                            if (source == "verify") {
+                                show.visibility = View.GONE
                                 patient_details.text =
-                                    context.getString(R.string.VERIFYING_FOR)+"\n" + userName
+                                    context.getString(R.string.VERIFYING_FOR) + userName
                                 continue_verification.text =
                                     context.getString(R.string.patient_id) + " " + idFace
-                            }else{
-                                show.visibility= View.GONE
+                                continue_verification.visibility = View.GONE
+                                continue_btn.visibility = View.GONE
+                            } else {
+                                show.visibility = View.GONE
                                 patient_details.text =
-                                   context.getString(R.string.verifying_user)+" :-\n" +userName
+                                    context.getString(R.string.verifying_user) + " :-" + userName
                                 continue_verification.text =
                                     context.getString(R.string.user_id) + "  " + idFace
+                                continue_btn.visibility = View.VISIBLE
                             }
 
 
@@ -168,7 +172,7 @@ class FrameAnalyser(
                                     context.getString(R.string.verified_customer)
                                 statusDisplay.setCardBackgroundColor(Color.GREEN)
 
-                                if (source == "verify"){
+                                if (source == "verify") {
                                     if (registerTransactionDetails(context, idFace, userName)) {
                                         requireSend = false
                                     } else {
@@ -179,10 +183,10 @@ class FrameAnalyser(
                                         ).show()
                                     }
                                     soundEffectForSuccessfullValidation(context)
-                                }else if (source=="user"){
+                                } else if (source == "user") {
                                     soundEffectForSuccessfullValidation(context)
                                     val userPrefManager = UserPrefManager(context)
-                                    userPrefManager.setNurseDetails(idFace,userName,photo)
+                                    userPrefManager.setNurseDetails(idFace, userName, photo)
                                 }
                             }
                         } else if (result < 0) {
@@ -194,13 +198,15 @@ class FrameAnalyser(
                             a = 0
                             c++
                             if (c == 5) {
+                                statusDisplay.setCardBackgroundColor(Color.RED)
+
                                 soundEffectForErrorValidation(context)
                                 status_face_verification.text =
                                     context.getString(R.string.patient_not_found)
-                                statusDisplay.setCardBackgroundColor(Color.RED)
                                 patient_details.setTextColor(Color.WHITE)
                                 continue_verification.setTextColor(Color.WHITE)
                                 status_face_verification.setTextColor(Color.WHITE)
+                                continue_btn.visibility = View.VISIBLE
                             }
                         }
                     }
@@ -273,7 +279,11 @@ class FrameAnalyser(
     }
 
 
-    private fun registerTransactionDetails(context: Context, idFace: String?, userName: String): Boolean {
+    private fun registerTransactionDetails(
+        context: Context,
+        idFace: String?,
+        userName: String
+    ): Boolean {
         if (requireSend) {
             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
             val calendar = Calendar.getInstance()
@@ -283,14 +293,18 @@ class FrameAnalyser(
             if (AppUtils.isNetworkAvailable(context)) {
                 Log.i("TAG", "registerTransactionDetails: ")
                 val post = ServiceConfig.createService(RetroOldApi::class.java)
-                val call = post.addTransaction(idFace, ANDROID_ID(context), date,
-                    userPrefManager.nurseDetails[1],userPrefManager.terminalName
+                val call = post.addTransaction(
+                    idFace, ANDROID_ID(context), date,
+                    userPrefManager.nurseDetails[1], userPrefManager.terminalName
                 )
 
                 call.enqueue(object : Callback<ResponseBody?> {
-                    override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
+                    override fun onResponse(
+                        call: Call<ResponseBody?>,
+                        response: Response<ResponseBody?>
+                    ) {
                         if (response.isSuccessful) {
-                            showDialog(context,userName,true)
+                            showDialog(context, userName, true)
                         } else if (response.code() == 400) {
                             try {
                                 val jObjError = JSONObject(response.errorBody()!!.string())
@@ -302,7 +316,7 @@ class FrameAnalyser(
                             } catch (e: java.lang.Exception) {
                                 Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
                             }
-                        }else if(response.code()==500){
+                        } else if (response.code() == 500) {
                             Toast.makeText(context, response.message(), Toast.LENGTH_LONG).show()
                         }
                     }
@@ -316,11 +330,15 @@ class FrameAnalyser(
                 })
                 return true
             } else {
-                Toast.makeText(context, context.getString(R.string.no_interest_connection), Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    context,
+                    context.getString(R.string.no_interest_connection),
+                    Toast.LENGTH_LONG
+                ).show()
                 return false
             }
-        }else{
-           return requireSend
+        } else {
+            return requireSend
         }
         return false
     }
@@ -375,8 +393,8 @@ class FrameAnalyser(
             }
 
             dialog.show()
-          }
         }
+    }
 
 
 }

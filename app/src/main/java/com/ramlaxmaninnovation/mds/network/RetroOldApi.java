@@ -22,7 +22,7 @@ public interface RetroOldApi {
 
     @FormUrlEncoded
     @POST("devices")
-    Call<ResponseBody> addDevice(@Field("device") String device_id, @Field("location") String location);
+    Call<ResponseBody> addDevice(@Field("device") String device_id, @Field("location") String location, @Field("device_name") String device_name);
 
     @FormUrlEncoded
     @POST("availability")

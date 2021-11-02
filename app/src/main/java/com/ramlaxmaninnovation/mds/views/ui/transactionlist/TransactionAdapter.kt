@@ -49,8 +49,8 @@ class TransactionAdapter  : RecyclerView.Adapter<TransactionAdapter.ProductListV
         holder.itemView.apply {
             transaction_date_time.text = categoriesItem.last_consumption_date
             patient_id.text = categoriesItem.patient_id
+            patient_name.text = categoriesItem.patient_name
             transaction_date_time.text = categoriesItem.last_consumption_date
-            user_name.text = categoriesItem.last_consumption_date
             terminal_name.text = categoriesItem.device_name
             user_name.text=categoriesItem.nurse
 

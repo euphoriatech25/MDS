@@ -38,6 +38,7 @@ class FaceVerificationActivity : AppCompatActivity() {
     private lateinit var status_face_verification: TextView
     private lateinit var show: TextView
     private lateinit var statusDisplay: CardView
+    private lateinit var back_home: Button
     private lateinit var frameAnalyser: FrameAnalyser
     private lateinit var boundingBoxOverlay: BoundingBoxOverlay
     private var threshold = 0.9f
@@ -59,6 +60,7 @@ class FaceVerificationActivity : AppCompatActivity() {
         UserDatabaseUtils.getUsersFromFaceID(this, userFaceID, databaseCallback)
 
         show = findViewById(R.id.show)
+        show.setText(R.string.face_show_user)
         patient_details = findViewById(R.id.patient_details)
         statusDisplay = findViewById(R.id.statusDisplay)
         status_face_verification = findViewById(R.id.status_face_verification)
@@ -74,8 +76,16 @@ class FaceVerificationActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
+        back_home = findViewById(R.id.back_home)
+
+        back_home.setOnClickListener {
+            val intent = Intent(this, CameraViewActivity::class.java).apply {
+            }
+            startActivity(intent)
+        }
+
         continue_btn = findViewById(R.id.continue_btn)
-        continue_btn.visibility = View.VISIBLE
+//        continue_btn.visibility = View.VISIBLE
         continue_btn.setOnClickListener {
             val intent = Intent(this, CameraViewActivity::class.java).apply {
             }
@@ -111,7 +121,8 @@ class FaceVerificationActivity : AppCompatActivity() {
                 continue_verification,
                 "user",
                 photo,
-                show
+                show,
+                continue_btn
             )
             frameAnalyser.classificationThreshold = threshold
             startCameraPreview()

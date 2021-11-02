@@ -27,7 +27,7 @@
             android:layout_gravity="center"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:text="パスワード" />
+             />
 
         <View
             android:layout_width="0dp"
@@ -38,7 +38,7 @@
             android:textColor="@color/white"
             android:id="@+id/patient_id"
             style="@style/table_row_design"
-            android:text="使用者ID" />
+           />
 
         <View
             android:layout_width="0dp"
@@ -49,7 +49,7 @@
             android:textColor="@color/white"
             android:id="@+id/patient_name"
             style="@style/table_row_design"
-            android:text="使用者名" />
+           />
 
         <View
             android:layout_width="0dp"
@@ -60,7 +60,7 @@
             android:textColor="@color/white"
             android:id="@+id/user_name"
             style="@style/table_row_design"
-            android:text="操作" />
+           />
 
         <View
             android:layout_width="0dp"
@@ -71,7 +71,7 @@
             android:textColor="@color/white"
             android:id="@+id/terminal_name"
             style="@style/table_row_design"
-            android:text="端末" />
+           />
 
         <View
             android:layout_width="0dp"
